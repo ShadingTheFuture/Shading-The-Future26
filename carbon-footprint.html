@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home | Shading The Future</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Script -->
+  <!-- If your JS is inside /css/, change src to "css/script.js" -->
+  <script src="script.js" defer></script>
+
+  <style>
+    :root{
+      --navy: #7DA3D6;
+      --aqua: #92F2D7;
+      --aqua-hover: #E1BDF5;
+      --pastel: #EBDC76;
+      --white: #FFEBAF;
+    }
+    *{box-sizing:border-box}
+    body,html{margin:0;height:100%;font-family:'Poppins',sans-serif;background:var(--pastel);}
+    .sidebar{
+      position:fixed;top:0;left:-260px;width:260px;height:100%;
+      background:var(--navy);padding:18px 16px;transition:left .28s ease;
+      z-index:1000;border-top-right-radius:20px;border-bottom-right-radius:20px;
+    }
+    .sidebar.open{left:0;}
+    .logo{text-align:center;margin-bottom:20px;}
+    .logo img{width:72px;height:72px;border-radius:50%;display:block;margin:0 auto;}
+    .logo h2{color:var(--white);font-size:20px;margin:10px 0 0;}
+    .nav-list{list-style:none;padding:0;margin:0;}
+    .nav-list li{margin:10px 0;}
+    .nav-list a{
+      display:block;text-decoration:none;padding:10px 14px;border-radius:8px;
+      background:var(--aqua);color:var(--navy);font-weight:700;
+    }
+    .nav-list a:hover{background:var(--aqua-hover);}
+    .close-btn{
+      position:absolute;top:8px;right:10px;background:none;border:none;
+      font-size:26px;color:var(--white);cursor:pointer;
+    }
+    .open-btn{
+      position:fixed;top:16px;left:16px;z-index:1100;background:none;
+      border:none;font-size:28px;cursor:pointer;color:var(--navy);
+    }
+    .main{
+      padding:36px;transition:margin-left .28s ease;min-height:100vh;
+    }
+    .main.shifted{margin-left:260px;}
+    h1{color:#ff91c8;font-size:48px;margin:10px 0 16px;}
+    p{font-size:18px;color:#0f2240;}
+    @media(max-width:720px){
+      .main.shifted{margin-left:0;}
+      .sidebar{width:82%;left:-82%;}
+      .sidebar.open{left:0;}
+    }
+  </style>
+</head>
+
+<body>
+  <!-- open button -->
+  <button id="openBtn" class="open-btn" aria-label="Open sidebar" aria-expanded="false" aria-controls="sidebar">☰</button>
+
+  <!-- sidebar -->
+  <aside id="sidebar" class="sidebar" aria-hidden="true">
+    <button id="closeBtn" class="close-btn" aria-label="Close sidebar">×</button>
+
+    <div class="logo">
+      <img src="images/IMG_20250716_220954_451 (1).webp" alt="Logo" onerror="this.style.display='none'">
+      <h2>Shading The Future</h2>
+    </div>
+
+    <ul class="nav-list">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="education-hub.html">Education Hub</a></li>
+      <li><a href="skin-analysis.html">Skin Analysis</a></li>
+      <li><a href="carbon-footprint.html">Carbon Footprint Tracker</a></li>
+      <li><a href="uv-weather.html">UV & Weather Monitor</a></li>
+      <li><a href="travel-mode.html">Travel Mode</a></li>
+      <li><a href="product-info.html">Product Information</a></li>
+      <li><a href="profile.html">Profile</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+  </aside>
+  <style>
+    .sidebar {
+      height: 100vh;
+      overflow-y: auto;
+    }
+  </style>
+<script>
+    document.addEventListener('DOMContentLoaded',()=>{
+      const sidebar=document.getElementById('sidebar');
+      const openBtn=document.getElementById('openBtn');
+      const closeBtn=document.getElementById('closeBtn');
+      const main=document.getElementById('main');
+      const navLinks=sidebar.querySelectorAll('.nav-list a');
+
+      function openSidebar(){
+        sidebar.classList.add('open');
+        sidebar.setAttribute('aria-hidden','false');
+        openBtn.setAttribute('aria-expanded','true');
+        if(window.innerWidth>720)main.classList.add('shifted');
+      }
+      function closeSidebar(){
+        sidebar.classList.remove('open');
+        sidebar.setAttribute('aria-hidden','true');
+        openBtn.setAttribute('aria-expanded','false');
+        main.classList.remove('shifted');
+      }
+
+      openBtn.addEventListener('click',()=>{
+        sidebar.classList.contains('open')?closeSidebar():openSidebar();
+      });
+      closeBtn.addEventListener('click',closeSidebar);
+
+      navLinks.forEach(link=>{
+        link.addEventListener('click',()=>{
+          if(window.innerWidth<=720)closeSidebar();
+        });
+      });
+
+      document.addEventListener('click',ev=>{
+        const inside=sidebar.contains(ev.target)||openBtn.contains(ev.target);
+        if(!inside&&sidebar.classList.contains('open')&&window.innerWidth<=720){closeSidebar();}
+      });
+
+      document.addEventListener('keydown',ev=>{
+        if(ev.key==='Escape'&&sidebar.classList.contains('open')){closeSidebar();openBtn.focus();}
+      });
+
+      window.addEventListener('resize',()=>{
+        if(window.innerWidth<=720)main.classList.remove('shifted');
+      });
+    });
+  </script>
+</body>
+</html> 
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Carbon Footprint Tracker — Education Hub Style</title>
+
+<!-- Confetti -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<style>
+  /* ---------- Theme colors ---------- */
+  :root{
+    --pink: #FF90C2;
+    --mint: #92F2D7;
+    --turquoise: #3BC7C4;
+    --yellow: #FFEBAF;
+    --card-bg: #ffffff;
+    --muted: #586169;
+    --radius: 18px;
+    --shadow: 0 10px 30px rgba(12,30,40,0.08);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+    background: linear-gradient(180deg,var(--yellow),#fff);
+    color:#102026;
+    line-height:1.45;
+  }
+
+  .hero {
+    background: linear-gradient(180deg, rgba(146,242,215,0.95), rgba(255,235,175,0.95));
+    padding: 44px 18px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    position:relative;
+    overflow:hidden;
+  }
+
+  .hero .hero-inner {
+    width:92%;
+    max-width:1180px;
+    display:flex;
+    align-items:center;
+    gap:28px;
+    padding:26px;
+    border-radius:16px;
+    background: linear-gradient(180deg,#dff8f0,#fff);
+    box-shadow: var(--shadow);
+    border-left: 12px solid var(--pink);
+  }
+
+  .hero-title {
+    color: var(--pink);
+    font-weight:800;
+    font-size:46px;
+    letter-spacing:1px;
+    margin:0;
+    text-align:center;
+  }
+  .hero-desc { max-width:640px; color:var(--muted); margin-top:6px; font-size:15px; }
+
+  .circle { position:absolute; border-radius:50%; opacity:0.22; }
+  .c1{ width:240px;height:240px;background:var(--mint); top:18px; left:40px; }
+  .c2{ width:160px;height:160px;background:var(--turquoise); top:32px; right:80px; }
+  .c3{ width:180px;height:180px;background:var(--pink); bottom:-40px; left:20px; }
+
+  .container {
+    width:92%;
+    max-width:1180px;
+    margin: 28px auto;
+  }
+
+  section.card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding:20px;
+    margin-bottom:20px;
+  }
+
+  h2.section-title{
+    margin:0 0 8px;
+    color:var(--turquoise);
+    font-size:20px;
+    font-weight:700;
+  }
+  p.lead { margin:0; color:var(--muted); font-size:14px; }
+
+  form#calcForm {
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:14px;
+    margin-top:14px;
+  }
+  @media (max-width:860px){ form#calcForm{ grid-template-columns:1fr } }
+
+  .field { display:flex; flex-direction:column; }
+  .field label { font-weight:600; font-size:13px; margin-bottom:6px; color:#173; }
+  .field input, .field select {
+    padding:12px 10px; border-radius:12px; border:1px solid #e6eef0; font-size:14px;
+    background: linear-gradient(180deg,#fff,#fbfbfb);
+  }
+
+  .full { grid-column: 1 / -1; }
+
+  .actions { display:flex; gap:12px; margin-top:12px; align-items:center; }
+  .btn {
+    background: linear-gradient(90deg,var(--turquoise),var(--mint));
+    color:white; border:none; padding:12px 16px; border-radius:12px; font-weight:700; cursor:pointer;
+    box-shadow: 0 8px 26px rgba(59,199,196,0.14);
+  }
+  .btn.secondary {
+    background:transparent; border:1px solid #e7eef0; color:#335; font-weight:700;
+  }
+
+  .results { display:flex; gap:18px; align-items:flex-start; margin-top:16px; }
+  @media (max-width:720px){ .results{ flex-direction:column } }
+
+  .summary {
+    flex:1;
+    background: linear-gradient(180deg,#f8fffB,#f2fffb);
+    border-radius:12px; padding:14px;
+  }
+  .big { font-size:28px; font-weight:800; color:var(--pink); }
+  .feedback { margin-top:8px; color:#214; font-weight:700; }
+
+  .small-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:12px; }
+
+  .widget {
+    background:linear-gradient(180deg,#fff,#fbfbfb); padding:12px; border-radius:10px; box-shadow: var(--shadow);
+  }
+
+  .muted { color:var(--muted); font-size:13px; }
+
+  .badges { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+  .badge { background:linear-gradient(90deg,var(--pink),#ffc3df); color:white; padding:8px 12px; border-radius:999px; font-weight:700; font-size:13px; }
+
+  .info-grid {
+    display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:14px; margin-top:12px;
+  }
+
+  .info-card {
+    background: linear-gradient(180deg,#fff,#fbfbfb);
+    border-radius:12px; padding:14px; box-shadow:var(--shadow);
+  }
+  .info-card h3{ margin:0 0 6px; color:var(--pink); font-size:16px; }
+  .info-card p{ margin:0; color:var(--muted); font-size:14px; }
+
+  footer {
+    text-align:center; margin:28px auto 80px; color:var(--muted); font-size:13px;
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div style="flex:1">
+      <h1 class="hero-title">Welcome to the Carbon Footprint Tracker</h1>
+      <p class="hero-desc">A fun, interactive space to learn how your daily choices affect the planet — now add your carbon tracker results below.</p>
+    </div>
+  </div>
+
+  <div class="circle c1"></div>
+  <div class="circle c2"></div>
+  <div class="circle c3"></div>
+</header>
+
+<main class="container">
+
+<section class="card" id="calculator">
+  <h2 class="section-title">Calculate your carbon footprint</h2>
+  <p class="lead">Quick questions anyone can answer — we'll estimate your weekly emissions and show how to improve.</p>
+
+  <form id="calcForm">
+    <div class="field"><label>Car — km this week</label><input id="car_km" type="number"></div>
+    <div class="field"><label>Bus — km</label><input id="bus_km" type="number"></div>
+    <div class="field"><label>Train — km</label><input id="train_km" type="number"></div>
+    <div class="field"><label>Flights — hours per year</label>
+      <select id="plane_hours">
+        <option value="0">0</option><option value="2">1–2</option>
+        <option value="10">3–6</option><option value="40">7+</option>
+      </select>
+    </div>
+    <div class="field"><label>Red meat meals</label><input id="beef_serving" type="number"></div>
+    <div class="field"><label>Chicken / fish meals</label><input id="chicken_serving" type="number"></div>
+    <div class="field"><label>Electricity kWh</label><input id="electricity_kwh" type="number"></div>
+    <div class="field"><label>Gas m³</label><input id="gas_m3" type="number"></div>
+
+    <div class="field full">
+      <label>Recycle frequency (1–5)</label>
+      <input id="recycle" type="number" min="1" max="5" value="3">
+    </div>
+
+    <div class="field full actions">
+      <button type="submit" class="btn">Calculate my footprint</button>
+      <button id="saveLocal" type="button" class="btn secondary">Save locally</button>
+    </div>
+  </form>
+
+  <!-- RESULTS (graph removed) -->
+  <div id="results" style="display:none" class="results">
+    <div class="summary">
+      <div class="big" id="footprint">— kg CO₂</div>
+      <div class="feedback" id="feedbackText">—</div>
+
+      <div class="small-grid">
+        <div class="widget">
+          <div class="muted">Streak</div><div id="streakNum" style="font-size:18px;font-weight:800"></div>
+        </div>
+        <div class="widget">
+          <div class="muted">Weekly total</div><div id="weeklyTotal" style="font-size:18px;font-weight:800"></div>
+        </div>
+        <div class="widget">
+          <div class="muted">Goal progress</div><div id="goalPct" style="font-size:18px;font-weight:800"></div>
+        </div>
+      </div>
+
+      <div class="muted" style="margin-top:12px">Badges:</div>
+      <div class="badges" id="badgesArea"></div>
+    </div>
+  </div>
+
+</section>
+
+<section class="card" id="infoHub">
+  <h2 class="section-title">Education Hub — Learn more</h2>
+  <p class="lead">Short, trustworthy explanations and practical steps.</p>
+
+  <div class="info-grid">
+    <div class="info-card"><h3>Climate change</h3><p>Greenhouse gases trap heat, intensifying extreme weather.</p></div>
+    <div class="info-card"><h3>Biodiversity</h3><p>Rising temperatures disrupt habitats and species survival.</p></div>
+    <div class="info-card"><h3>Health</h3><p>Air pollution and heatwaves affect human wellbeing.</p></div>
+    <div class="info-card"><h3>Your impact</h3><p>Small weekly choices add up — transport, diet, energy and waste.</p></div>
+  </div>
+</section>
+
+<footer>
+  
+</footer>
+</main>
+
+<script>
+/* -------- simplified JS without graphs ---------- */
+
+const calcForm = document.getElementById("calcForm");
+const results = document.getElementById("results");
+const footprintEl = document.getElementById("footprint");
+const feedbackEl = document.getElementById("feedbackText");
+const streakNum = document.getElementById("streakNum");
+const weeklyTotalEl = document.getElementById("weeklyTotal");
+const goalPctEl = document.getElementById("goalPct");
+const badgesArea = document.getElementById("badgesArea");
+
+const FACTORS = {
+  car_km: 0.21,
+  bus_km: 0.11,
+  train_km: 0.06,
+  plane_hours: 90,
+  beef_serving: 27,
+  chicken_serving: 6.9,
+  electricity_kwh: 0.475,
+  gas_m3: 2
+};
+
+function estimate(payload){
+  let total = 0;
+  total += payload.car_km * FACTORS.car_km;
+  total += payload.bus_km * FACTORS.bus_km;
+  total += payload.train_km * FACTORS.train_km;
+  total += payload.plane_hours * FACTORS.plane_hours;
+  total += payload.beef_serving * FACTORS.beef_serving;
+  total += payload.chicken_serving * FACTORS.chicken_serving;
+  total += payload.electricity_kwh * FACTORS.electricity_kwh;
+  total += payload.gas_m3 * FACTORS.gas_m3;
+
+  total *= 1 - ((payload.recycle - 1) * 0.03);
+
+  return Math.round(total * 10) / 10;
+}
+
+function feedback(fp){
+  if(fp < 50) return "Excellent — low footprint!";
+  if(fp < 150) return "Good — small changes can help.";
+  if(fp < 300) return "High — consider reducing travel & meat.";
+  return "Very high — big changes recommended.";
+}
+
+calcForm.addEventListener("submit", e => {
+  e.preventDefault();
+
+  const payload = {
+    car_km: Number(car_km.value || 0),
+    bus_km: Number(bus_km.value || 0),
+    train_km: Number(train_km.value || 0),
+    plane_hours: Number(plane_hours.value || 0),
+    beef_serving: Number(beef_serving.value || 0),
+    chicken_serving: Number(chicken_serving.value || 0),
+    electricity_kwh: Number(electricity_kwh.value || 0),
+    gas_m3: Number(gas_m3.value || 0),
+    recycle: Number(recycle.value || 3)
+  };
+
+  const fp = estimate(payload);
+
+  footprintEl.textContent = fp + " kg CO₂";
+  feedbackEl.textContent = feedback(fp);
+
+  weeklyTotalEl.textContent = fp + " kg";
+  goalPctEl.textContent = Math.round((100 / 200) * fp) + "%";
+
+  streakNum.textContent = 1;
+
+  badgesArea.innerHTML = "";
+  if(fp < 100) badgesArea.innerHTML += `<div class="badge">Eco Starter</div>`;
+  if(fp < 70) badgesArea.innerHTML += `<div class="badge">Green Hero</div>`;
+
+  results.style.display = "flex";
+
+  confetti({
+    particleCount: 80,
+    spread: 60,
+    origin: { y: 0.6 }
+  });
+});
+</script>
+<!-- 🌿 UPCYCLING SECTION – FULL FEATURE VERSION -->
+<style>
+  .upcycle-section {
+    padding: 50px 22px;
+    background: #FFF7FB;
+    border-radius: 25px;
+    margin-top: 50px;
+    animation: fadeIn 0.8s ease forwards;
+  }
+
+  .upcycle-title {
+    text-align: center;
+    font-size: 2.2rem;
+    color: #FF90C2;
+    font-weight: 800;
+    margin-bottom: 12px;
+  }
+
+  .upcycle-sub {
+    text-align: center;
+    font-size: 1.15rem;
+    color: #555;
+    max-width: 750px;
+    margin: 0 auto;
+  }
+
+  .upcycle-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 22px;
+    margin-top: 35px;
+  }
+
+  .upcycle-card {
+    padding: 22px;
+    border-radius: 22px;
+    color: #333;
+    transition: transform .25s ease, box-shadow .25s ease;
+    animation: fadeUp 0.7s ease forwards;
+    opacity: 0;
+  }
+
+  .upcycle-card:nth-child(1){ background:#FF90C2; color:white; animation-delay:.1s; }
+  .upcycle-card:nth-child(2){ background:#92F2D7; color:#00332A; animation-delay:.2s; }
+  .upcycle-card:nth-child(3){ background:#FFEBAF; color:#5A4F1F; animation-delay:.3s; }
+
+  .upcycle-card:hover {
+    transform: scale(1.04);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.12);
+  }
+
+  /* IMAGE UPLOAD BOXES */
+  .upcycle-image-box {
+    width: 260px;
+    height: 260px;
+    background: #EDEDED;
+    border-radius: 20px;
+    border: 3px dashed #3BC7C4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #3BC7C4;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .upcycle-image-box:hover {
+    background: #defcf7;
+    color: #2ea7a3;
+    border-color: #FF90C2;
+  }
+
+  .upcycle-gallery {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin-top: 25px;
+  }
+
+  @keyframes fadeIn {
+    from { opacity:0; transform: translateY(20px); }
+    to { opacity:1; transform: translateY(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity:0; transform: translateY(25px); }
+    to { opacity:1; transform: translateY(0); }
+  }
+</style>
+
+<section class="upcycle-section">
+
+  <h2 class="upcycle-title">♻️ Upcycling Your Clothes</h2>
+  <p class="upcycle-sub">Give your clothes a second life — save money, reduce waste, and get creative!</p>
+
+  <!-- INFORMATION CARDS -->
+  <div class="upcycle-grid">
+
+    <!-- Card 1 -->
+    <div class="upcycle-card">
+      <h3 style="margin-top:0;">🌍 Why Upcycling Matters</h3>
+      <p>
+        The fashion industry is one of the top polluters on the planet. Every year, more than
+        <b>92 million tonnes of clothing waste</b> are thrown away. Upcycling slows down fast fashion,
+        reduces landfill waste, and lowers carbon emissions — all while giving your clothes more life.
+      </p>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="upcycle-card">
+      <h3 style="margin-top:0;">💡 Easy Upcycling Ideas</h3>
+      <ul style="margin:0; padding-left:18px;">
+        <li>Turn oversized t-shirts into crop tops or bags</li>
+        <li>Add embroidery or patches for personality</li>
+        <li>Cut jeans into stylish shorts</li>
+        <li>Make scrunchies from leftover fabric</li>
+        <li>Use fabric paint for custom designs</li>
+      </ul>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="upcycle-card">
+      <h3 style="margin-top:0;">✨ The Benefits</h3>
+      <p>
+        • Saves money 
+        • Helps the environment 
+        • Reduces landfill waste 
+        • Boosts creativity 
+        • Lets you express your own style 
+      </p>
+    </div>
+
+  </div>
+
+  <!-- GALLERY HEADER -->
+  <h3 style="text-align:center; margin-top:45px; color:#3BC7C4; font-size:1.5rem;">
+    🧵 Your Upcycling Gallery
+  </h3>
+  <p style="text-align:center; color:#666;">Upload pictures of your upcycled outfits!</p>
+
+  <!-- IMAGE UPLOAD AREA -->
+  <div class="upcycle-gallery">
+    <!-- BOX 1 -->
+    <label class="upcycle-image-box" id="up1">
+      Add Image<br>(Click to upload)
+      <input type="file" accept="image/*" style="display:none;" onchange="previewUpcycleImg(this, 'up1')">
+    </label>
+
+    <!-- BOX 2 -->
+    <label class="upcycle-image-box" id="up2">
+      Add Image<br>(Click to upload)
+      <input type="file" accept="image/*" style="display:none;" onchange="previewUpcycleImg(this, 'up2')">
+    </label>
+  </div>
+
+  <!-- EXTRA EDUCATION -->
+  <div style="max-width:800px; margin:40px auto 0; text-align:center;">
+    <h3 style="color:#FF90C2; font-size:1.4rem;">🌱 Did You Know?</h3>
+    <p style="color:#555; font-size:1.1rem;">
+      Extending the life of your clothes by just <b>9 months</b> reduces their carbon footprint by
+      <b>20–30%</b>. Even small changes — repairing, upcycling, or donating — make a huge difference.
+    </p>
+  </div>
+
+</section>
+
+<script>
+/* IMAGE PREVIEW HANDLER */
+function previewUpcycleImg(input, boxId){
+  const file = input.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const box = document.getElementById(boxId);
+    box.style.backgroundImage = `url('${e.target.result}')`;
+    box.innerHTML = "";
+    box.style.border = "2px solid #3BC7C4";
+  };
+  reader.readAsDataURL(file);
+}
+</script> 
+
+
+</body>
+</html> 

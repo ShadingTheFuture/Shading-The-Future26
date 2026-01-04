@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home | Shading The Future</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Script -->
+  <!-- If your JS is inside /css/, change src to "css/script.js" -->
+  <script src="script.js" defer></script>
+
+  <style>
+    :root{
+      --navy: #7DA3D6;
+      --aqua: #92F2D7;
+      --aqua-hover: #E1BDF5;
+      --pastel: #EBDC76;
+      --white: #FFEBAF;
+    }
+    *{box-sizing:border-box}
+    body,html{margin:0;height:100%;font-family:'Poppins',sans-serif;background:var(--pastel);}
+    .sidebar{
+      position:fixed;top:0;left:-260px;width:260px;height:100%;
+      background:var(--navy);padding:18px 16px;transition:left .28s ease;
+      z-index:1000;border-top-right-radius:20px;border-bottom-right-radius:20px;
+    }
+    .sidebar.open{left:0;}
+    .logo{text-align:center;margin-bottom:20px;}
+    .logo img{width:72px;height:72px;border-radius:50%;display:block;margin:0 auto;}
+    .logo h2{color:var(--white);font-size:20px;margin:10px 0 0;}
+    .nav-list{list-style:none;padding:0;margin:0;}
+    .nav-list li{margin:10px 0;}
+    .nav-list a{
+      display:block;text-decoration:none;padding:10px 14px;border-radius:8px;
+      background:var(--aqua);color:var(--navy);font-weight:700;
+    }
+    .nav-list a:hover{background:var(--aqua-hover);}
+    .close-btn{
+      position:absolute;top:8px;right:10px;background:none;border:none;
+      font-size:26px;color:var(--white);cursor:pointer;
+    }
+    .open-btn{
+      position:fixed;top:16px;left:16px;z-index:1100;background:none;
+      border:none;font-size:28px;cursor:pointer;color:var(--navy);
+    }
+    .main{
+      padding:36px;transition:margin-left .28s ease;min-height:100vh;
+    }
+    .main.shifted{margin-left:260px;}
+    h1{color:#ff91c8;font-size:48px;margin:10px 0 16px;}
+    p{font-size:18px;color:#0f2240;}
+    @media(max-width:720px){
+      .main.shifted{margin-left:0;}
+      .sidebar{width:82%;left:-82%;}
+      .sidebar.open{left:0;}
+    }
+  </style>
+</head>
+
+<body>
+  <!-- open button -->
+  <button id="openBtn" class="open-btn" aria-label="Open sidebar" aria-expanded="false" aria-controls="sidebar">☰</button>
+
+  <!-- sidebar -->
+  <aside id="sidebar" class="sidebar" aria-hidden="true">
+    <button id="closeBtn" class="close-btn" aria-label="Close sidebar">×</button>
+
+    <div class="logo">
+      <img src="images/IMG_20250716_220954_451 (1).webp" alt="Logo" onerror="this.style.display='none'">
+      <h2>Shading The Future</h2>
+    </div>
+
+    <ul class="nav-list">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="education-hub.html">Education Hub</a></li>
+      <li><a href="skin-analysis.html">Skin Analysis</a></li>
+      <li><a href="carbon-footprint.html">Carbon Footprint Tracker</a></li>
+      <li><a href="uv-weather.html">UV & Weather Monitor</a></li>
+      <li><a href="travel-mode.html">Travel Mode</a></li>
+      <li><a href="product-info.html">Product Information</a></li>
+      <li><a href="profile.html">Profile</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+  </aside>
+  <style>
+    .sidebar {
+      height: 100vh;
+      overflow-y: auto;
+    }
+  </style>
+<script>
+    document.addEventListener('DOMContentLoaded',()=>{
+      const sidebar=document.getElementById('sidebar');
+      const openBtn=document.getElementById('openBtn');
+      const closeBtn=document.getElementById('closeBtn');
+      const main=document.getElementById('main');
+      const navLinks=sidebar.querySelectorAll('.nav-list a');
+
+      function openSidebar(){
+        sidebar.classList.add('open');
+        sidebar.setAttribute('aria-hidden','false');
+        openBtn.setAttribute('aria-expanded','true');
+        if(window.innerWidth>720)main.classList.add('shifted');
+      }
+      function closeSidebar(){
+        sidebar.classList.remove('open');
+        sidebar.setAttribute('aria-hidden','true');
+        openBtn.setAttribute('aria-expanded','false');
+        main.classList.remove('shifted');
+      }
+
+      openBtn.addEventListener('click',()=>{
+        sidebar.classList.contains('open')?closeSidebar():openSidebar();
+      });
+      closeBtn.addEventListener('click',closeSidebar);
+
+      navLinks.forEach(link=>{
+        link.addEventListener('click',()=>{
+          if(window.innerWidth<=720)closeSidebar();
+        });
+      });
+
+      document.addEventListener('click',ev=>{
+        const inside=sidebar.contains(ev.target)||openBtn.contains(ev.target);
+        if(!inside&&sidebar.classList.contains('open')&&window.innerWidth<=720){closeSidebar();}
+      });
+
+      document.addEventListener('keydown',ev=>{
+        if(ev.key==='Escape'&&sidebar.classList.contains('open')){closeSidebar();openBtn.focus();}
+      });
+
+      window.addEventListener('resize',()=>{
+        if(window.innerWidth<=720)main.classList.remove('shifted');
+      });
+    });
+  </script>
+</body>
+</html> 
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Product</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(
+        135deg,
+        #fce7f3,
+        #e0f2fe,
+        #ecfdf5,
+        #fef9c3,
+        #ede9fe
+      );
+      padding: 25px;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: clamp(2.5rem, 6vw, 3.4rem);
+      color: #3f3f46;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #6b7280;
+      font-style: italic;
+      margin-bottom: 60px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      gap: 60px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ---------- Product Section ---------- */
+    .product {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 40px;
+      padding: 45px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+      align-items: center;
+    }
+
+    /* ---------- Image Placeholder ---------- */
+    .image {
+      height: 320px;
+      border-radius: 30px;
+      background: linear-gradient(
+        135deg,
+        #fbcfe8,
+        #bfdbfe,
+        #d1fae5
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #6b7280;
+      font-size: 1.1rem;
+      font-style: italic;
+      box-shadow: inset 0 0 40px rgba(255, 255, 255, 0.6);
+    }
+
+    /* ---------- Text ---------- */
+    .text h2 {
+      font-size: 2.2rem;
+      color: #ec4899;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .text p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #374151;
+      margin-bottom: 25px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .tag {
+      padding: 10px 20px;
+      border-radius: 999px;
+      background: rgba(236, 72, 153, 0.1);
+      color: #be185d;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    /* ---------- Floating Sparkles ---------- */
+    .sparkle {
+      position: fixed;
+      bottom: -100px;
+      border-radius: 50%;
+      opacity: 0.3;
+      animation: floatUp linear infinite;
+      z-index: 1;
+    }
+
+    .sparkle:nth-child(1) { left: 12%; width: 60px; height: 60px; background: #fbcfe8; animation-duration: 20s; }
+    .sparkle:nth-child(2) { left: 35%; width: 40px; height: 40px; background: #bfdbfe; animation-duration: 26s; }
+    .sparkle:nth-child(3) { left: 60%; width: 90px; height: 90px; background: #d1fae5; animation-duration: 30s; }
+    .sparkle:nth-child(4) { left: 82%; width: 55px; height: 55px; background: #ede9fe; animation-duration: 22s; }
+
+    @keyframes floatUp {
+      to {
+        transform: translateY(-120vh);
+      }
+    }
+
+    /* ---------- Mobile ---------- */
+    @media (max-width: 850px) {
+      .product {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 35px 25px;
+      }
+
+      .image {
+        height: 250px;
+      }
+
+      .tags {
+        justify-content: center;
+      }
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 70px;
+      font-size: 0.9rem;
+      color: #6b7280;
+      position: relative;
+      z-index: 2;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Floating sparkles -->
+  <div class="sparkle"></div>
+  <div class="sparkle"></div>
+  <div class="sparkle"></div>
+  <div class="sparkle"></div>
+
+  <h1>Our Products</h1>
+  <p class="subtitle">A story of creativity, purpose, and possibility</p>
+
+  <div class="container">
+
+    <!-- Section 1 -->
+    <div class="product">
+      <div class="image">
+        Image goes here
+      </div>
+      <div class="text">
+        <h2>The Idea</h2>
+        <p>
+          This is where the story begins. Our product was created from a simple idea
+          — one that grew through creativity, curiosity, and the belief that even
+          the smallest spark can become something meaningful.
+        </p>
+        <div class="tags">
+          <div class="tag">Creative</div>
+          <div class="tag">Thoughtful</div>
+          <div class="tag">Purpose-Driven</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2 -->
+    <div class="product">
+      <div class="text">
+        <h2>How It Works</h2>
+        <p>
+          Designed to be intuitive and inspiring, this product blends simplicity
+          with innovation. Every detail has been considered to make the experience
+          feel effortless, elegant, and impactful.
+        </p>
+        <div class="tags">
+          <div class="tag">User-Friendly</div>
+          <div class="tag">Modern</div>
+          <div class="tag">Innovative</div>
+        </div>
+      </div>
+      <div class="image">
+        Image goes here
+      </div>
+    </div>
+
+    <!-- Section 3 -->
+    <div class="product">
+      <div class="image">
+        Image goes here
+      </div>
+      <div class="text">
+        <h2>Why It Matters</h2>
+        <p>
+          This product is more than just an idea — it’s about impact. It’s about
+          empowering people, solving real problems, and proving that creativity
+          can change the world in meaningful ways.
+        </p>
+        <div class="tags">
+          <div class="tag">Empowering</div>
+          <div class="tag">Inclusive</div>
+          <div class="tag">Future-Focused</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    © 2025 • ShadingTheFuture
+  </footer>
+
+</body>
+</html> 

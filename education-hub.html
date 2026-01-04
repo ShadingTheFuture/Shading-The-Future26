@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home | Shading The Future</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Script -->
+  <!-- If your JS is inside /css/, change src to "css/script.js" -->
+  <script src="script.js" defer></script>
+
+  <style>
+    :root{
+      --navy: #7DA3D6;
+      --aqua: #92F2D7;
+      --aqua-hover: #E1BDF5;
+      --pastel: #EBDC76;
+      --white: #FFEBAF;
+    }
+    *{box-sizing:border-box}
+    body,html{margin:0;height:100%;font-family:'Poppins',sans-serif;background:var(--pastel);}
+    .sidebar{
+      position:fixed;top:0;left:-260px;width:260px;height:100%;
+      background:var(--navy);padding:18px 16px;transition:left .28s ease;
+      z-index:1000;border-top-right-radius:20px;border-bottom-right-radius:20px;
+    }
+    .sidebar.open{left:0;}
+    .logo{text-align:center;margin-bottom:20px;}
+    .logo img{width:72px;height:72px;border-radius:50%;display:block;margin:0 auto;}
+    .logo h2{color:var(--white);font-size:20px;margin:10px 0 0;}
+    .nav-list{list-style:none;padding:0;margin:0;}
+    .nav-list li{margin:10px 0;}
+    .nav-list a{
+      display:block;text-decoration:none;padding:10px 14px;border-radius:8px;
+      background:var(--aqua);color:var(--navy);font-weight:700;
+    }
+    .nav-list a:hover{background:var(--aqua-hover);}
+    .close-btn{
+      position:absolute;top:8px;right:10px;background:none;border:none;
+      font-size:26px;color:var(--white);cursor:pointer;
+    }
+    .open-btn{
+      position:fixed;top:16px;left:16px;z-index:1100;background:none;
+      border:none;font-size:28px;cursor:pointer;color:var(--navy);
+    }
+    .main{
+      padding:36px;transition:margin-left .28s ease;min-height:100vh;
+    }
+    .main.shifted{margin-left:260px;}
+    h1{color:#ff91c8;font-size:48px;margin:10px 0 16px;}
+    p{font-size:18px;color:#0f2240;}
+    @media(max-width:720px){
+      .main.shifted{margin-left:0;}
+      .sidebar{width:82%;left:-82%;}
+      .sidebar.open{left:0;}
+    }
+  </style>
+</head>
+
+<body>
+  <!-- open button -->
+  <button id="openBtn" class="open-btn" aria-label="Open sidebar" aria-expanded="false" aria-controls="sidebar">☰</button>
+
+  <!-- sidebar -->
+  <aside id="sidebar" class="sidebar" aria-hidden="true">
+    <button id="closeBtn" class="close-btn" aria-label="Close sidebar">×</button>
+
+    <div class="logo">
+      <img src="images/IMG_20250716_220954_451 (1).webp" alt="Logo" onerror="this.style.display='none'">
+      <h2>Shading The Future</h2>
+    </div>
+
+    <ul class="nav-list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="education-hub.html" class="active">Education Hub</a></li>
+      <li><a href="skin-analysis.html">Skin Analysis</a></li>
+      <li><a href="carbon-footprint.html">Carbon Footprint Tracker</a></li>
+      <li><a href="uv-weather.html">UV & Weather Monitor</a></li>
+      <li><a href="travel-mode.html">Travel Mode</a></li>
+      <li><a href="product-info.html">Product Information</a></li>
+      <li><a href="profile.html">Profile</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+  </aside>
+
+<style>
+    .sidebar {
+      height: 100vh;
+      overflow-y: auto;
+    }
+  </style>
+<script>
+    document.addEventListener('DOMContentLoaded',()=>{
+      const sidebar=document.getElementById('sidebar');
+      const openBtn=document.getElementById('openBtn');
+      const closeBtn=document.getElementById('closeBtn');
+      const main=document.getElementById('main');
+      const navLinks=sidebar.querySelectorAll('.nav-list a');
+
+      function openSidebar(){
+        sidebar.classList.add('open');
+        sidebar.setAttribute('aria-hidden','false');
+        openBtn.setAttribute('aria-expanded','true');
+        if(window.innerWidth>720)main.classList.add('shifted');
+      }
+      function closeSidebar(){
+        sidebar.classList.remove('open');
+        sidebar.setAttribute('aria-hidden','true');
+        openBtn.setAttribute('aria-expanded','false');
+        main.classList.remove('shifted');
+      }
+
+      openBtn.addEventListener('click',()=>{
+        sidebar.classList.contains('open')?closeSidebar():openSidebar();
+      });
+      closeBtn.addEventListener('click',closeSidebar);
+
+      navLinks.forEach(link=>{
+        link.addEventListener('click',()=>{
+          if(window.innerWidth<=720)closeSidebar();
+        });
+      });
+
+      document.addEventListener('click',ev=>{
+        const inside=sidebar.contains(ev.target)||openBtn.contains(ev.target);
+        if(!inside&&sidebar.classList.contains('open')&&window.innerWidth<=720){closeSidebar();}
+      });
+
+      document.addEventListener('keydown',ev=>{
+        if(ev.key==='Escape'&&sidebar.classList.contains('open')){closeSidebar();openBtn.focus();}
+      });
+
+      window.addEventListener('resize',()=>{
+        if(window.innerWidth<=720)main.classList.remove('shifted');
+      });
+    });
+  </script>
+</body>
+</html> 
+
+<!-- Place this at the top of your <body> -->
+<nav class="top-nav">
+    <a href="learn.html">Learn</a>
+    <a href="community.html">Community</a>
+    <a href="kids-club.html">Kids Club</a>
+    <a href="innovation.html">Innovation</a>
+</nav>
+
+<style>
+    /* Top navigation bar */
+    .top-nav {
+        display: flex;
+        justify-content: center; /* centers the links horizontally */
+        background-color: #FF66BE; /* green bar */
+        padding: 15px 0;
+        gap: 30px; /* space between links */
+    }
+
+    .top-nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1.1em;
+        transition: color 0.2s;
+    }
+
+    .top-nav a:hover {
+        color: #ffeb3b; /* yellow on hover */
+    }
+</style> 
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Education Project</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+   
+    <!-- main content -->
+ 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Education Hub – Home</title>
+
+<style>
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #FDFBF6;
+    color: #333;
+  }
+
+  /* Colours */
+  :root {
+    --pink: #FF90C2;
+    --mint: #92F2D7;
+    --turquoise: #3BC7C4;
+    --yellow: #FFEBAF;
+  }
+
+  /* Header */
+  header {
+    background: linear-gradient(135deg, var(--mint), var(--yellow));
+    padding: 60px 20px;
+    text-align: center;
+    color: #222;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header h1 {
+    font-size: 3rem;
+    margin: 0;
+    font-weight: 700;
+  }
+
+  header p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 15px auto 0;
+  }
+
+  /* Floating graphics */
+  .floating-shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.35;
+    animation: float 6s infinite ease-in-out alternate;
+  }
+
+  @keyframes float {
+    from { transform: translateY(0px); }
+    to { transform: translateY(25px); }
+  }
+
+  .shape1 { width: 140px; height: 140px; background: var(--pink); top: 20px; left: -30px; }
+  .shape2 { width: 110px; height: 110px; background: var(--turquoise); top: 90px; right: -20px; }
+  .shape3 { width: 180px; height: 180px; background: var(--yellow); bottom: -40px; left: 30px; }
+
+  
+  header {
+  background: linear-gradient(135deg, var(--mint), var(--yellow));
+  padding: 100px 20px;      /* normal spacing */
+  text-align: center;
+  color: #222;
+  position: relative;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;  /* stack text vertically */
+  align-items: center;     /* horizontal center */
+  justify-content: center;/* vertical center */
+} 
+header h1 {
+  margin-bottom: 15px;
+}
+
+header p {
+  max-width: 650px; /* keeps paragraph readable */
+  font-size: 1.1rem;
+} 
+  
+  
+  
+  
+  
+  
+  
+  /* Main content grid */
+  .sections {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    padding: 40px 20px;
+  }
+
+  .section-card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: 0.3s;
+    cursor: pointer;
+    border: 4px solid transparent;
+  }
+
+  .section-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--mint);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  }
+
+  .section-card h2 {
+    margin-top: 10px;
+    font-size: 1.8rem;
+    color: #333;
+  }
+
+  .section-card p {
+    margin-top: 12px;
+    font-size: 1rem;
+    color: #555;
+  }
+
+  /* Emoji / graphics */
+  .icon {
+    font-size: 3.4rem;
+  }
+
+</style>
+
+</head>
+<body>
+
+<header>
+  <div class="floating-shape shape1"></div>
+  <div class="floating-shape shape2"></div>
+  <div class="floating-shape shape3"></div>
+
+  <h1>Welcome to the Education Hub</h1>
+  <p>
+    A fun, interactive, and inspiring digital space dedicated to helping everyone learn about
+     real world problems such climate change and the impact us humans can have on the world!
+  </p>
+</header>
+
+<section class="sections">
+
+  <div class="section-card">
+    <div class="icon">📘</div>
+    <h2>Learn</h2>
+    <p>Dive into topics like climate change, sustainability, ecosystems, green technology and more. Start learning your way.</p>
+  </div>
+
+  <div class="section-card">
+    <div class="icon">🤝</div>
+    <h2>Community</h2>
+    <p>Connect with others, take part in challenges, share ideas, join discussions and make a real-world impact together.</p>
+  </div>
+
+  <div class="section-card">
+    <div class="icon">🧸</div>
+    <h2>Kids Club</h2>
+    <p>Fun facts, colourful learning, creative activities, games and videos designed especially for young explorers.</p>
+  </div>
+
+  <div class="section-card">
+    <div class="icon">💡</div>
+    <h2>Innovation</h2>
+    <p>Explore cutting-edge ideas, eco-tech breakthroughs, inventions, experiments and future solutions.</p>
+  </div>
+
+</section>
+
+</body>
+</html> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

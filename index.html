@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home | Shading The Future</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Script -->
+  <!-- If your JS is inside /css/, change src to "css/script.js" -->
+  <script src="script.js" defer></script>
+
+  <style>
+    :root{
+ 
+      --navy: #7DA3D6;
+      --aqua: #92F2D7;
+      --aqua-hover: #E1BDF5;
+      --pastel: #EBDC76;
+      --white: #FFEBAF;
+    }
+    *{box-sizing:border-box}
+    body,html{margin:0;height:100%;font-family:'Poppins',sans-serif;background:var(--pastel);}
+    .sidebar{
+      position:fixed;top:0;left:-260px;width:260px;height:100%;
+      background:var(--navy);padding:18px 16px;transition:left .28s ease;
+      z-index:1000;border-top-right-radius:20px;border-bottom-right-radius:20px;
+    }
+    .sidebar.open{left:0;}
+    .logo{text-align:center;margin-bottom:20px;}
+    .logo img{width:72px;height:72px;border-radius:50%;display:block;margin:0 auto;}
+    .logo h2{color: var(--white) ;font-size:20px;margin:10px 0 0;}
+    .nav-list{list-style:none;padding:0;margin:0;}
+    .nav-list li{margin:10px 0;}
+    .nav-list a{
+      display:block;text-decoration:none;padding:10px 14px;border-radius:8px;
+      background:var(--aqua);color:var(--navy);font-weight:700;
+    }
+    .nav-list a:hover{background:var(--aqua-hover);}
+    .close-btn{
+      position:absolute;top:8px;right:10px;background:none;border:none;
+      font-size:26px;color:var(--white);cursor:pointer;
+    }
+    .open-btn{
+      position:fixed;top:16px;left:16px;z-index:1100;background:none;
+      border:none;font-size:28px;cursor:pointer;color:var(--navy);
+    }
+    .main{
+      padding:36px;transition:margin-left .28s ease;min-height:100vh;
+    }
+    .main.shifted{margin-left:260px;}
+    h1{color:#ff91c8;font-size:48px;margin:10px 0 16px;}
+    p{font-size:18px;color:#254D75;}
+    @media(max-width:720px){
+      .main.shifted{margin-left:0;}
+      .sidebar{width:82%;left:-82%;}
+      .sidebar.open{left:0;}
+    }
+  </style>
+</head>
+
+<body>
+  <!-- open button -->
+  <button id="openBtn" class="open-btn" aria-label="Open sidebar" aria-expanded="false" aria-controls="sidebar">☰</button>
+
+  <!-- sidebar -->
+  <aside id="sidebar" class="sidebar" aria-hidden="true">
+    <button id="closeBtn" class="close-btn" aria-label="Close sidebar">×</button>
+
+    <div class="logo">
+      <img src="images/IMG_20250716_220954_451 (1).webp" alt="Logo" onerror="this.style.display='none'">
+      <h2>Shading The Future</h2>
+    </div>
+
+    <ul class="nav-list">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="education-hub.html">Education Hub</a></li>
+      <li><a href="skin-analysis.html">Skin Analysis</a></li>
+      <li><a href="carbon-footprint.html">Carbon Footprint Tracker</a></li>
+      <li><a href="uv-weather.html">UV & Weather Monitor</a></li>
+      <li><a href="travel-mode.html">Travel Mode</a></li>
+      <li><a href="product-info.html">Product Information</a></li>
+      <li><a href="profile.html">Profile</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+  </aside>
+
+<head>
+  <style>
+    .sidebar {
+      height: 100vh;
+      overflow-y: auto;
+    }
+  </style>
+</head> 
+ 
+  <script>
+    document.addEventListener('DOMContentLoaded',()=>{
+      const sidebar=document.getElementById('sidebar');
+      const openBtn=document.getElementById('openBtn');
+      const closeBtn=document.getElementById('closeBtn');
+      const main=document.getElementById('main');
+      const navLinks=sidebar.querySelectorAll('.nav-list a');
+
+      function openSidebar(){
+        sidebar.classList.add('open');
+        sidebar.setAttribute('aria-hidden','false');
+        openBtn.setAttribute('aria-expanded','true');
+        if(window.innerWidth>720)main.classList.add('shifted');
+      }
+      function closeSidebar(){
+        sidebar.classList.remove('open');
+        sidebar.setAttribute('aria-hidden','true');
+        openBtn.setAttribute('aria-expanded','false');
+        main.classList.remove('shifted');
+      }
+
+      openBtn.addEventListener('click',()=>{
+        sidebar.classList.contains('open')?closeSidebar():openSidebar();
+      });
+      closeBtn.addEventListener('click',closeSidebar);
+
+      navLinks.forEach(link=>{
+        link.addEventListener('click',()=>{
+          if(window.innerWidth<=720)closeSidebar();
+        });
+      });
+
+      document.addEventListener('click',ev=>{
+        const inside=sidebar.contains(ev.target)||openBtn.contains(ev.target);
+        if(!inside&&sidebar.classList.contains('open')&&window.innerWidth<=720){closeSidebar();}
+      });
+
+      document.addEventListener('keydown',ev=>{
+        if(ev.key==='Escape'&&sidebar.classList.contains('open')){closeSidebar();openBtn.focus();}
+      });
+
+      window.addEventListener('resize',()=>{
+        if(window.innerWidth<=720)main.classList.remove('shifted');
+      });
+    });
+  </script>
+</body>
+</html> 
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Carbon Footprint Tracker — Education Hub Style</title>
+
+<!-- Confetti -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<style>
+  /* ---------- Theme colors ---------- */
+  :root{
+    --pink: #FF90C2;
+    --mint: #92F2D7;
+    --turquoise: #3BC7C4;
+    --yellow: #FFEBAF;
+    --card-bg: #ffffff;
+    --muted: #586169;
+    --radius: 18px;
+    --shadow: 0 10px 30px rgba(12,30,40,0.08);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+    background: linear-gradient(180deg,var(--yellow),#fff);
+    color:#102026;
+    line-height:1.45;
+  }
+
+  .hero {
+    background: linear-gradient(180deg, rgba(146,242,215,0.95), rgba(255,235,175,0.95));
+    padding: 44px 18px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    position:relative;
+    overflow:hidden;
+  }
+
+  .hero .hero-inner {
+    width:92%;
+    max-width:1180px;
+    display:flex;
+    align-items:center;
+    gap:28px;
+    padding:26px;
+    border-radius:16px;
+    background: linear-gradient(180deg,#dff8f0,#fff);
+    box-shadow: var(--shadow);
+    border-left: 12px solid var(--pink);
+  }
+
+  .hero-title {
+    color: var(--pink);
+    font-weight:800;
+    font-size:46px;
+    letter-spacing:1px;
+    margin:0;
+    text-align:center;
+  }
+  .hero-desc { max-width:640px; color:var(--muted); margin-top:6px; font-size:15px; }
+
+  .circle { position:absolute; border-radius:50%; opacity:0.22; }
+  .c1{ width:240px;height:240px;background:var(--mint); top:18px; left:40px; }
+  .c2{ width:160px;height:160px;background:var(--turquoise); top:32px; right:80px; }
+  .c3{ width:180px;height:180px;background:var(--pink); bottom:-40px; left:20px; }
+
+  .container {
+    width:92%;
+    max-width:1180px;
+    margin: 28px auto;
+  }
+
+  section.card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding:20px;
+    margin-bottom:20px;
+  }
+
+  h2.section-title{
+    margin:0 0 8px;
+    color:var(--turquoise);
+    font-size:20px;
+    font-weight:700;
+  }
+  p.lead { margin:0; color:var(--muted); font-size:14px; }
+
+  form#calcForm {
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:14px;
+    margin-top:14px;
+  }
+  @media (max-width:860px){ form#calcForm{ grid-template-columns:1fr } }
+
+  .field { display:flex; flex-direction:column; }
+  .field label { font-weight:600; font-size:13px; margin-bottom:6px; color:#173; }
+  .field input, .field select {
+    padding:12px 10px; border-radius:12px; border:1px solid #e6eef0; font-size:14px;
+    background: linear-gradient(180deg,#fff,#fbfbfb);
+  }
+
+  .full { grid-column: 1 / -1; }
+
+  .actions { display:flex; gap:12px; margin-top:12px; align-items:center; }
+  .btn {
+    background: linear-gradient(90deg,var(--turquoise),var(--mint));
+    color:white; border:none; padding:12px 16px; border-radius:12px; font-weight:700; cursor:pointer;
+    box-shadow: 0 8px 26px rgba(59,199,196,0.14);
+  }
+  .btn.secondary {
+    background:transparent; border:1px solid #e7eef0; color:#335; font-weight:700;
+  }
+
+  .results { display:flex; gap:18px; align-items:flex-start; margin-top:16px; }
+  @media (max-width:720px){ .results{ flex-direction:column } }
+
+  .summary {
+    flex:1;
+    background: linear-gradient(180deg,#f8fffB,#f2fffb);
+    border-radius:12px; padding:14px;
+  }
+  .big { font-size:28px; font-weight:800; color:var(--pink); }
+  .feedback { margin-top:8px; color:#214; font-weight:700; }
+
+  .small-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:12px; }
+
+  .widget {
+    background:linear-gradient(180deg,#fff,#fbfbfb); padding:12px; border-radius:10px; box-shadow: var(--shadow);
+  }
+
+  .muted { color:var(--muted); font-size:13px; }
+
+  .badges { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+  .badge { background:linear-gradient(90deg,var(--pink),#ffc3df); color:white; padding:8px 12px; border-radius:999px; font-weight:700; font-size:13px; }
+
+  .info-grid {
+    display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:14px; margin-top:12px;
+  }
+
+  .info-card {
+    background: linear-gradient(180deg,#fff,#fbfbfb);
+    border-radius:12px; padding:14px; box-shadow:var(--shadow);
+  }
+  .info-card h3{ margin:0 0 6px; color:var(--pink); font-size:16px; }
+  .info-card p{ margin:0; color:var(--muted); font-size:14px; }
+
+  footer {
+    text-align:center; margin:28px auto 80px; color:var(--muted); font-size:13px;
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div style="flex:1">
+      <h1 class="hero-title">Welcome to Shading The Future</h1>
+      <p class="hero-desc">A fun, interactive space to learn, grow and discover simple ways to help the planet.</p>
+    </div>
+  </div>
+
+  <div class="circle c1"></div>
+  <div class="circle c2"></div>
+  <div class="circle c3"></div>
+</header>
+
+
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home Content</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #e0f7ec, #e8f0ff);
+      color: #1f2937;
+    }.home-container {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 2rem;
+  padding: 3rem;
+  min-height: calc(100vh - 120px); /* header already exists */
+}
+
+.image-section {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.image-section img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background-color: #00000010;
+}
+.image-section{
+  background: linear-gradient(135deg , #FF90C2 , #F0C1DE)
+}
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.6)
+  );
+  display: flex;
+  align-items: flex-end;
+  padding: 2rem;
+  color: white;
+}
+
+.image-overlay h2 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.content-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.about-card,
+.eco-tip-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.about-card h3,
+.eco-tip-card h3 {
+  margin-top: 0;
+  color: #FF90C2;
+  font-size: 1.6rem;
+}
+
+.about-card p {
+  line-height: 1.6;
+  font-size: 1.05rem;
+}
+
+.eco-tip-card {
+  background: linear-gradient(135deg, #3BC7C4, #ADE5E3);
+  color: white;
+}
+
+.eco-tip-card button {
+  margin-top: 1rem;
+  padding: 0.9rem 1.5rem;
+  border: none;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: bold;
+  background: white;
+  color: #047857;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.eco-tip-card button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+#ecoTip {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+@media (max-width: 900px) {
+  .home-container {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 2rem;
+    padding: 3rem;
+    align-items: start;
+  }
+
+  .image-section {
+     border-radius: 24px;
+     overflow: hidden;
+     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+     width: 100%;
+     height: auto;
+     object-fit: contain;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <!-- This is ONLY the page content, header already exists -->  <main class="home-container">
+    <!-- Large Image Section -->
+    <section class="image-section">
+      <img
+        src="PXL_20260102_190556903~2 (1).jpg"
+        alt="Nature and sustainability"
+      />
+      <div class="image-overlay">
+        <h2>"Every meaningful change starts as a small idea".</h2>
+      </div>
+    </section><!-- Right Content -->
+<section class="content-section">
+  <div class="about-card">
+    <h3>About Us</h3>
+    <p>
+      We are Hannah and Caoimhe Quinn, 16 year old twin sisters from Castleblayney College Co.Monaghan. Although we are twins, we each bring our own perspectives and interests, but we share a long-standing curiosity about how the world works. Growing up together has meant that learning, questioning and problem solving has always been apart of our lives.
+      Our interest in science developed early, not only as a school subject but as a way of understanding systems, patterns and real world challenges. To us, science is driven by curiosity and the pursuit of evidence based answers. It involves asking difficult questions, analysing information critically and being willing to explore ideas even when the outcome is uncertain. Working together as twins has strengthened our ability to communicate clearly, divide tasks effectively, and rely on one another's strengths. These are skills that support both our academic work and personal development.
+      Outside of science we both enjoy creative and reflective activities. Art provides a way to express ideas visually and think beyond fixed structure. Music is also a source of relaxation and a source of focus.
+      Family plays a central role in our lives. We are two of four siblings, and we are extremely close as a family. Our parents have conistently supported our interests and encouraged us. Their support has been a key factor of this project.
+      We have created Shading The Future in response to the growing need for UV protection solutions that do not compromise environmental health. With the rise in global temperatures and ozone thinning means that more UV radiation is present in our atmosphere which directly affects us. We wanted to use science to create someting that genuinely helps. 
+    </p>
+  </div>
+
+  <div class="eco-tip-card">
+    <h3>Daily Eco Tip 🌱</h3>
+    <p>Click below to receive a simple tip you can use today.</p>
+    <button onclick="generateEcoTip()">Get Today's Eco Tip</button>
+    <div id="ecoTip"></div>
+  </div>
+</section>
+
+  </main>  <script>
+    const ecoTips = [
+      'Turn off lights when leaving a room to save energy.',
+      'Use a reusable water bottle instead of plastic ones.',
+      'Take shorter showers to conserve water.',
+      'Choose locally grown food to reduce your carbon footprint.',
+      'Recycle paper, plastic, and glass whenever possible.',
+      'Unplug chargers when not in use to save electricity.'
+    ];
+
+    function generateEcoTip() {
+      const randomTip = ecoTips[Math.floor(Math.random() * ecoTips.length)];
+      document.getElementById('ecoTip').textContent = randomTip;
+    }
+  </script></body>
+</html> 

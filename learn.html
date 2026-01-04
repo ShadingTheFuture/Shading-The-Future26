@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home | Shading The Future</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Script -->
+  <!-- If your JS is inside /css/, change src to "css/script.js" -->
+  <script src="script.js" defer></script>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn - Education Hub</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #BADBF3; /* Deep blue background */
+            color: #FF66BE; /* White text for contrast */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .back-link {
+            align-self: flex-start;
+            margin-bottom: 40px;
+            text-decoration: none;
+            color: #2A4074; /* Yellow link */
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: #fff176; /* Lighter yellow on hover */
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 2em;
+        }
+
+        p {
+            max-width: 600px;
+            text-align: center;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <!-- Back to Education Hub link -->
+    <a href="education-hub.html" class="back-link">← Back to Education Hub</a>
+
+    <!-- Page content -->
+    <h1></h1>
+    
+</body>
+</html> 
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Sustainability Learn Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+* {margin:0; padding:0; box-sizing:border-box;}
+body {font-family:'Roboto', sans-serif; background:#f0f4f8; color:#333;}
+a {text-decoration:none; color:inherit;}
+header {background:#2d7a2d; color:white; padding:1.5rem; text-align:center;}
+header h1 {font-size:2rem;}
+nav {display:flex; justify-content:center; gap:1rem; margin:1rem 0; flex-wrap:wrap;}
+nav a {padding:0.5rem 1rem; border-radius:5px; transition:0.3s; background:#fff; color:#2d7a2d;}
+nav a:hover {background:#1e5c1e; color:white;}
+.container {max-width:1200px; margin:2rem auto; padding:0 2rem;}
+section {margin-bottom:4rem;}
+section h2 {font-size:1.8rem; color:#2d7a2d; margin-bottom:1rem; border-bottom:2px solid #2d7a2d; display:inline-block; padding-bottom:0.2rem;}
+p, li {line-height:1.6; margin-bottom:0.8rem;}
+ul {list-style-type: disc; margin-left:1.2rem;}
+.learning-paths {display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1.5rem;}
+.path-card {background:white; padding:1.5rem; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.05); transition: transform 0.3s; position:relative; cursor:pointer;}
+.path-card:hover {transform:translateY(-5px);}
+.path-card.completed::after {content:"✓ Completed"; position:absolute; top:10px; right:10px; color:#2d7a2d; font-weight:bold;}
+.path-card h3 {color:#1e5c1e; margin-bottom:0.5rem;}
+button {background:#2d7a2d; color:white; border:none; padding:0.5rem 1rem; border-radius:5px; cursor:pointer; transition:0.3s;}
+button:hover {background:#1e5c1e;}
+.quiz, .action-tracker, .dashboard {background:#e0f0e0; padding:1rem; border-radius:10px; margin-bottom:1rem;}
+.quiz input, .quiz select, .quiz textarea {padding:0.3rem; margin-top:0.5rem; width:100%;}
+.resources {display:flex; flex-wrap:wrap; gap:1rem;}
+.resource-card {background:white; padding:1rem; border-radius:10px; flex:1 1 200px; box-shadow:0 3px 8px rgba(0,0,0,0.1);}
+footer {text-align:center; padding:2rem 0; background:#2d7a2d; color:white;}
+.collapsible {background:#2d7a2d;color:white; cursor:pointer; padding:0.5rem 1rem; border:none; border-radius:5px; width:100%; text-align:left; margin-bottom:0.5rem; font-size:1rem;}
+.active, .collapsible:hover {background:#1e5c1e;}
+.content {padding:0 1rem; display:none; overflow:hidden; background:#f9f9f9; border-radius:5px; margin-bottom:1rem;}
+.progress-bar {background:#ddd; border-radius:10px; overflow:hidden; margin-top:0.5rem;}
+.progress-fill {height:20px; background:#2d7a2d; width:0%; color:white; text-align:center; line-height:20px;}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Global Sustainability Learn Hub</h1>
+</header>
+
+<nav>
+  <a href="#issues">Global Issues</a>
+  <a href="#paths">Learning Paths</a>
+  <a href="#solutions">Solutions</a>
+  <a href="#quizzes">Quizzes</a>
+  <a href="#tracker">Action Tracker</a>
+  <a href="#dashboard">Dashboard</a>
+  <a href="#resources">Resources</a>
+</nav>
+
+<div class="container">
+
+<script
+src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Deep Dive Global Issues -->
+<section id="issues">
+<h2>Global Environmental Issues</h2>
+<p>This section provides a comprehensive understanding of the most pressing global environmental challenges:</p>
+<ul>
+  <li><strong>Climate Change:</strong> Rising global temperatures, sea-level rise, melting polar ice caps, ocean acidification, extreme weather events, heatwaves, droughts, floods, and feedback loops such as permafrost thawing releasing methane.</li>
+  <li><strong>Biodiversity Loss:</strong> Rapid species extinction, deforestation, habitat fragmentation, invasive species introduction, coral reef degradation, overhunting, and the disruption of ecosystems leading to reduced ecosystem services.</li>
+  <li><strong>Pollution:</strong> Air pollution (PM2.5, NOx, CO), water contamination (plastics, heavy metals, agricultural runoff), soil degradation, ocean microplastics, and chemical pollutants affecting human health and wildlife.</li>
+  <li><strong>Deforestation & Land Use:</strong> Large-scale clearing of forests for agriculture or urbanization, soil erosion, loss of carbon sinks, monoculture plantations, desertification, and impact on local and global climate systems.</li>
+  <li><strong>Resource Depletion:</strong> Overfishing, freshwater scarcity, fossil fuel extraction, rare mineral depletion, unsustainable energy use, and pressures from population growth and industrialization.</li>
+  <li><strong>Ocean & Water Issues:</strong> Coral bleaching, rising sea temperatures, acidification, overfishing, plastic pollution, and freshwater scarcity affecting millions of people globally.</li>
+  <li><strong>Environmental Justice & Human Impact:</strong> Disproportionate effects of environmental degradation on vulnerable populations, pollution exposure, access to clean water, and climate migration.</li>
+</ul>
+</section>
+
+<!-- Learning Paths -->
+ <!-- Learning Paths Section -->
+<section id="paths">
+  <h2>Learning Paths</h2>
+  <div class="learning-paths">
+
+    <!-- Beginner Path -->
+    <div class="path-card">
+      <h3>Beginner</h3>
+
+      <button class="collapsible">Introduction to Climate Science</button>
+      <div class="content">
+        <p>Understand the greenhouse effect, greenhouse gases like CO2 and methane, and how human activity is altering Earth's climate.</p>
+        <iframe width="100%" height="200" src="https://www.youtube.com/embed/EtW2rrLHs08" title="Climate Change Explained" frameborder="0" allowfullscreen></iframe>
+      </div>
+
+      <button class="collapsible">Pollution & Waste Management Basics</button>
+      <div class="content">
+        <p>Explore types of pollution (air, water, soil) and learn strategies to reduce, reuse, and recycle. Understand how waste impacts ecosystems and human health.</p>
+        <iframe width="100%" height="200" src="https://www.youtube.com/embed/1F5wZXTkX1A" title="Sustainable Energy Solutions" frameborder="0" allowfullscreen></iframe>
+      </div>
+
+      <button class="collapsible">Human Ecological Footprints</button>
+      <div class="content">
+        <p>Discover how individual and collective lifestyles impact natural resources, and learn ways to reduce your ecological footprint.</p>
+      </div>
+
+      <button class="collapsible">Basics of Sustainability</button>
+      <div class="content">
+        <p>Learn the three pillars of sustainability: environmental, social, and economic. Understand why sustainability is critical for a healthy planet.</p>
+      </div>
+
+      <button class="collapsible">Overview of Sustainable Development Goals (SDGs)</button>
+      <div class="content">
+        <p>Explore the UN's 17 SDGs, highlighting key goals like clean energy, climate action, and life on land and below water.</p>
+      </div>
+    </div>
+
+    <!-- Intermediate Path -->
+    <div class="path-card">
+      <h3>Intermediate</h3>
+
+      <button class="collapsible">SDGs in Depth</button>
+      <div class="content">
+        <p>Dive deeper into SDGs 7, 12, and 13. Understand global initiatives and examples of how nations implement these goals.</p>
+      </div>
+
+      <button class="collapsible">Renewable Energy Technologies</button>
+      <div class="content">
+        <p>Learn how solar, wind, hydro, geothermal, and ocean energy work, their efficiency, challenges, and global adoption.</p>
+      </div>
+
+      <button class="collapsible">Environmental Policy & COP Agreements</button>
+      <div class="content">
+        <p>Understand international agreements like the Paris Agreement and COP conferences, and how they influence climate action worldwide.</p>
+      </div>
+
+      <button class="collapsible">Circular Economy Principles</button>
+      <div class="content">
+        <p>Explore reducing waste through recycling, upcycling, product redesign, and closed-loop systems.</p>
+      </div>
+
+      <button class="collapsible">Community-Based Conservation Projects</button>
+      <div class="content">
+        <p>Learn about community forests, marine reserves, and wildlife conservation initiatives that protect ecosystems locally and globally.</p>
+      </div>
+    </div>
+
+    <!-- Advanced Path -->
+    <div class="path-card">
+      <h3>Advanced</h3>
+
+      <button class="collapsible">Climate Modeling & Carbon Accounting</button>
+      <div class="content">
+        <p>Understand climate models, predictive tools, and how carbon accounting tracks emissions at national and corporate levels.</p>
+      </div>
+
+      <button class="collapsible">Corporate Sustainability & ESG Strategies</button>
+      <div class="content">
+        <p>Learn how companies integrate Environmental, Social, and Governance strategies, and measure sustainability impacts.</p>
+      </div>
+
+      <button class="collapsible">Global Case Studies of Success & Failure</button>
+      <div class="content">
+        <p>Explore real-world examples of environmental successes and failures, highlighting lessons learned and best practices.</p>
+      </div>
+
+      <button class="collapsible">Regenerative Agriculture & Soil Carbon Sequestration</button>
+      <div class="content">
+        <p>Learn about regenerative farming, cover cropping, no-till techniques, and how soil can act as a carbon sink.</p>
+      </div>
+
+      <button class="collapsible">Innovative Green Technology Solutions</button>
+      <div class="content">
+        <p>Discover cutting-edge solutions like carbon capture, green hydrogen, energy-efficient buildings, and smart grids.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Updated YouTube Videos Section -->
+<section id="videos">
+  <h2>Learn Through Videos</h2>
+  <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;">
+    <div style="flex:1 1 300px;">
+      <iframe width="100%" height="200" src="https://www.youtube.com/embed/mIQCifUD-pY" title="What is Climate Change? Explained for Everyone!" frameborder="0" allowfullscreen></iframe>
+      <p>What is Climate Change? (FuseSchool) 2</p>
+    </div>
+    <div style="flex:1 1 300px;">
+      <iframe width="100%" height="200" src="https://www.youtube.com/embed/AA89rHdU7Cc" title="What is biodiversity, why should we care?" frameborder="0" allowfullscreen></iframe>
+      <p>What is biodiversity, why should we care? 3</p>
+    </div>
+    <div style="flex:1 1 300px;">
+      <iframe width="100%" height="200" src="https://www.youtube.com/embed/EtW2rrLHs08" title="Causes and Effects of Climate Change | National Geographic" frameborder="0" allowfullscreen></iframe>
+      <p>Causes and Effects of Climate Change (National Geographic) 4</p>
+    </div>
+  </div>
+</section>
+
+<script>
+// Collapsible Functionality for Learning Paths
+const collapsibles = document.querySelectorAll(".collapsible");
+collapsibles.forEach(btn => {
+  btn.addEventListener("click", function() {
+    this.classList.toggle("active");
+    const content = this.nextElementSibling;
+    content.style.display = content.style.display === "block" ? "none" : "block";
+  });
+});
+</script> 
+
+
+
+
+<!-- Quizzes -->
+<section id="quizzes">
+<h2>Comprehensive Quiz (20 Questions)</h2>
+<div class="quiz-container" id="quizContainer"></div>
+<button onclick="calculateScore()">Submit Quiz</button>
+<p id="quiz-score"></p>
+</section>
+
+<!-- Action Tracker -->
+<section id="tracker">
+<h2>Action Tracker</h2>
+<div class="action-tracker">
+<p>Log your sustainability actions:</p>
+<input type="text" id="actionInput" placeholder="E.g., recycled plastic today">
+<button onclick="addAction()">Add Action</button>
+<ul id="actionList"></ul>
+</div>
+</section>
+
+<!-- Dashboard -->
+<section id="dashboard">
+<h2>Progress Dashboard</h2>
+<div class="dashboard">
+<p>Learning Path Completion:</p>
+<div class="progress-bar"><div class="progress-fill" id="learningProgress">0%</div></div>
+<p>Quizzes Completed:</p>
+<div class="progress-bar"><div class="progress-fill" id="quizProgress">0%</div></div>
+<p>Actions Logged:</p>
+<div class="progress-bar"><div class="progress-fill" id="actionProgress">0%</div></div>
+</div>
+</section>
+<section id="charts">
+<h2>Interactive Environmental Data</h2>
+
+<div style="margin-bottom:2rem;">
+  <h3>Global Carbon Emissions by Sector (2023)</h3>
+  <canvas id="carbonChart"></canvas>
+</div>
+
+<div style="margin-bottom:2rem;">
+  <h3>Biodiversity Loss Over Time</h3>
+  <canvas id="biodiversityChart"></canvas>
+</div>
+
+<div style="margin-bottom:2rem;">
+  <h3>Global Renewable Energy Adoption</h3>
+  <canvas id="renewableChart"></canvas>
+</div>
+</section>
+
+<script>
+// Carbon Emissions Chart
+const carbonCtx = document.getElementById('carbonChart').getContext('2d');
+const carbonChart = new Chart(carbonCtx, {
+  type: 'pie',
+  data: {
+    labels: ['Electricity & Heat', 'Industry', 'Transportation', 'Agriculture', 'Other'],
+    datasets: [{
+      label: 'CO2 Emissions by Sector (%)',
+      data: [42, 21, 24, 10, 3],
+      backgroundColor: ['#FF6384','#36A2EB','#FFCE56','#4BC0C0','#9966FF'],
+      borderWidth: 1
+    }]
+  },
+  options: {responsive:true, plugins:{legend:{position:'bottom'}}}
+});
+
+// Biodiversity Loss Chart
+const bioCtx = document.getElementById('biodiversityChart').getContext('2d');
+const biodiversityChart = new Chart(bioCtx, {
+  type: 'line',
+  data: {
+    labels: ['1990','2000','2010','2020','2025'],
+    datasets: [{
+      label: 'Number of Threatened Species (Millions)',
+      data: [5, 6.5, 7.2, 8.1, 8.7],
+      borderColor:'#FF6384',
+      backgroundColor:'rgba(255,99,132,0.2)',
+      fill:true,
+      tension:0.4
+    }]
+  },
+  options: {
+    responsive:true,
+    scales:{y:{beginAtZero:true}},
+    plugins:{legend:{display:true, position:'bottom'}}
+  }
+});
+
+// Renewable Energy Adoption Chart
+const renewableCtx = document.getElementById('renewableChart').getContext('2d');
+const renewableChart = new Chart(renewableCtx, {
+  type: 'bar',
+  data: {
+    labels: ['Solar','Wind','Hydro','Geothermal','Other'],
+    datasets: [{
+      label: 'Installed Capacity (GW)',
+      data: [850, 700, 1200, 150, 50],
+      backgroundColor: ['#FFCE56','#36A2EB','#4BC0C0','#9966FF','#FF6384']
+    }]
+  },
+  options: {
+    responsive:true,
+    scales:{y:{beginAtZero:true}},
+    plugins:{legend:{display:false}}
+  }
+});
+</script> 
+
+<!-- Resources -->
+<section id="resources">
+<h2>Resources</h2>
+<div class="resources">
+<div class="resource-card"><p><a href="https://www.un.org/sustainabledevelopment/" target="_blank">UN SDGs</a></p></div>
+<div class="resource-card"><p><a href="https://www.ipcc.ch/" target="_blank">IPCC Reports</a></p></div>
+<div class="resource-card"><p><a href="https://www.nationalgeographic.com/environment/" target="_blank">National Geographic Environment</a></p></div>
+<div class="resource-card"><p><a href="https://www.wwf.org/" target="_blank">WWF</a></p></div>
+<div class="resource-card"><p><a href="https://www.climate.gov/" target="_blank">NOAA Climate Resources</a></p></div>
+<div class="resource-card"><p><a href="https://www.edx.org/course/subjects/environmental-science" target="_blank">edX Environmental Courses</a></p></div>
+</div>
+</section>
+
+</div>
+
+<footer>
+<p>&copy; 2025 Global Sustainability Hub. All Rights Reserved.</p>
+</footer>
+
+<script>
+// Collapsible
+const coll=document.getElementsByClassName("collapsible");
+for(let i=0;i<coll.length;i++){
+  coll[i].addEventListener("click",function(){
+    this.classList.toggle("active");
+    const content=this.nextElementSibling;
+    content.style.display=content.style.display==="block"?"none":"block";
+  });
+}
+
+// Learning Path Completion
+function markCompleted(event,button){
+  event.stopPropagation();
+  const card=button.parentElement;
+  card.classList.toggle("completed");
+  updateProgress();
+}
+
+// Action Tracker
+function addAction(){
+  const input=document.getElementById("actionInput");
+  const value=input.value.trim();
+  if(value){
+    const li=document.createElement("li");
+    li.textContent=value;
+    document.getElementById("actionList").appendChild(li);
+    input.value="";
+    updateProgress();
+  }
+}
+
+// Quiz Questions with multiple possible correct answers
+const quizQuestions=[
+  {q:"Which gas is the main contributor to global warming?", a:["co2","carbon dioxide"]},
+  {q:"Name a renewable energy source.", a:["solar","wind","hydro","geothermal","ocean"]},
+  {q:"Primary goal of UN SDG #13?", a:["climate action","take urgent action on climate change"]},
+  {q:"Practice to improve soil carbon sequestration?", a:["regenerative agriculture","cover cropping","no-till farming"]},
+  {q:"Effect of deforestation?", a:["biodiversity loss","habitat loss","carbon emissions"]},
+  {q:"Major greenhouse gas besides CO2?", a:["methane","ch4"]},
+  {q:"What does SDG #14 focus on?", a:["life below water","oceans"]},
+  {q:"Example of circular economy?", a:["recycling","upcycling","closed-loop"]},
+  {q:"Leading cause of ocean acidification?", a:["co2","carbon dioxide"]},
+  {q:"Term for reducing energy use?", a:["energy efficiency","conservation"]},
+  {q:"Largest source of global air pollution?", a:["transportation","industry","fossil fuels"]},
+  {q:"What is permaculture?", a:["sustainable farming","regenerative agriculture"]},
+  {q:"Purpose of carbon capture?", a:["reduce co2","sequester carbon"]},
+  {q:"Impact of plastic pollution?", a:["marine life","oceans","ecosystem"]},
+  {q:"Effect of monoculture farming?", a:["soil degradation","loss of biodiversity"]},
+  {q:"What is zero waste?", a:["eliminate landfill","reduce waste","circular economy"]},
+  {q:"Global warming effect on ice caps?", a:["melting","ice loss","sea level rise"]},
+  {q:"Main human impact on biodiversity?", a:["habitat loss","overexploitation"]},
+  {q:"What is ESG?", a:["environmental social governance","esg"]},
+  {q:"Example of sustainable transport?", a:["electric vehicle","ev","bicycle"]}
+];
+
+// Generate Quiz
+const quizContainer=document.getElementById("quizContainer");
+quizQuestions.forEach((item,i)=>{
+  const div=document.createElement("div");
+  div.className="quiz";
+  div.innerHTML=`<p><strong>Q${i+1}:</strong> ${item.q}</p><input type="text" id="quiz${i}"><p id="quiz${i}-result"></p>`;
+  quizContainer.appendChild(div);
+});
+
+// Calculate Quiz Score
+function calculateScore(){
+  let score=0;
+  quizQuestions.forEach((item,i)=>{
+    const user=document.getElementById("quiz"+i).value.trim().toLowerCase();
+    const result=document.getElementById("quiz"+i+"-result");
+    if(item.a.some(ans=>user.includes(ans))){
+      score++;
+      result.textContent="✅ Correct!";
+      result.style.color="green";
+    } else {
+      result.textContent=`❌ Incorrect (Accepted: ${item.a.join(", ")})`;
+      result.style.color="red";
+    }
+  });
+  document.getElementById("quiz-score").textContent=`Your score: ${score} / ${quizQuestions.length}`;
+  updateProgress();
+}
+
+// Update Progress Dashboard
+function updateProgress(){
+  const paths=document.getElementsByClassName("path-card");
+  let completedPaths=0;
+  for(let p of paths){if(p.classList.contains("completed")) completedPaths++;}
+  document.getElementById("learningProgress").style.width=`${Math.round((completedPaths/paths.length)*100)}%`;
+  document.getElementById("learningProgress").textContent=`${Math.round((completedPaths/paths.length)*100)}%`;
+
+  const quizFilled=Array.from(quizQuestions).filter((_,i)=>document.getElementById("quiz"+i).value!=="").length;
+  document.getElementById("quizProgress").style.width=`${Math.round((quizFilled/quizQuestions.length)*100)}%`;
+  document.getElementById("quizProgress").textContent=`${Math.round((quizFilled/quizQuestions.length)*100)}%`;
+
+  const actionCount=document.getElementById("actionList").children.length;
+  const actionProgress=Math.min(actionCount*10,100);
+  document.getElementById("actionProgress").style.width=`${actionProgress}%`;
+  document.getElementById("actionProgress").textContent=`${actionProgress}%`;
+}
+</script>
+
+</body>
+</html> 

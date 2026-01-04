@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home | Shading The Future</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Script -->
+  <!-- If your JS is inside /css/, change src to "css/script.js" -->
+  <script src="script.js" defer></script>
+
+  <style>
+    :root{
+      --navy: #7DA3D6;
+      --aqua: #92F2D7;
+      --aqua-hover: #E1BDF5;
+      --pastel: #EBDC76;
+      --white: #FFEBAF;
+    }
+    *{box-sizing:border-box}
+    body,html{margin:0;height:100%;font-family:'Poppins',sans-serif;background:var(--pastel);}
+    .sidebar{
+      position:fixed;top:0;left:-260px;width:260px;height:100%;
+      background:var(--navy);padding:18px 16px;transition:left .28s ease;
+      z-index:1000;border-top-right-radius:20px;border-bottom-right-radius:20px;
+    }
+    .sidebar.open{left:0;}
+    .logo{text-align:center;margin-bottom:20px;}
+    .logo img{width:72px;height:72px;border-radius:50%;display:block;margin:0 auto;}
+    .logo h2{color:var(--white);font-size:20px;margin:10px 0 0;}
+    .nav-list{list-style:none;padding:0;margin:0;}
+    .nav-list li{margin:10px 0;}
+    .nav-list a{
+      display:block;text-decoration:none;padding:10px 14px;border-radius:8px;
+      background:var(--aqua);color:var(--navy);font-weight:700;
+    }
+    .nav-list a:hover{background:var(--aqua-hover);}
+    .close-btn{
+      position:absolute;top:8px;right:10px;background:none;border:none;
+      font-size:26px;color:var(--white);cursor:pointer;
+    }
+    .open-btn{
+      position:fixed;top:16px;left:16px;z-index:1100;background:none;
+      border:none;font-size:28px;cursor:pointer;color:var(--navy);
+    }
+    .main{
+      padding:36px;transition:margin-left .28s ease;min-height:100vh;
+    }
+    .main.shifted{margin-left:260px;}
+    h1{color:#ff91c8;font-size:48px;margin:10px 0 16px;}
+    p{font-size:18px;color:#0f2240;}
+    @media(max-width:720px){
+      .main.shifted{margin-left:0;}
+      .sidebar{width:82%;left:-82%;}
+      .sidebar.open{left:0;}
+    }
+  </style>
+</head>
+
+<body>
+  <!-- open button -->
+  <button id="openBtn" class="open-btn" aria-label="Open sidebar" aria-expanded="false" aria-controls="sidebar">☰</button>
+
+  <!-- sidebar -->
+  <aside id="sidebar" class="sidebar" aria-hidden="true">
+    <button id="closeBtn" class="close-btn" aria-label="Close sidebar">×</button>
+
+    <div class="logo">
+      <img src="images/IMG_20250716_220954_451 (1).webp" alt="Logo" onerror="this.style.display='none'">
+      <h2>Shading The Future</h2>
+    </div>
+
+    <ul class="nav-list">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="education-hub.html">Education Hub</a></li>
+      <li><a href="skin-analysis.html">Skin Analysis</a></li>
+      <li><a href="carbon-footprint.html">Carbon Footprint Tracker</a></li>
+      <li><a href="uv-weather.html">UV & Weather Monitor</a></li>
+      <li><a href="travel-mode.html">Travel Mode</a></li>
+      <li><a href="product-info.html">Product Information</a></li>
+      <li><a href="profile.html">Profile</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+  </aside>
+  <style>
+    .sidebar {
+      height: 100vh;
+      overflow-y: auto;
+    }
+  </style>
+<script>
+    document.addEventListener('DOMContentLoaded',()=>{
+      const sidebar=document.getElementById('sidebar');
+      const openBtn=document.getElementById('openBtn');
+      const closeBtn=document.getElementById('closeBtn');
+      const main=document.getElementById('main');
+      const navLinks=sidebar.querySelectorAll('.nav-list a');
+
+      function openSidebar(){
+        sidebar.classList.add('open');
+        sidebar.setAttribute('aria-hidden','false');
+        openBtn.setAttribute('aria-expanded','true');
+        if(window.innerWidth>720)main.classList.add('shifted');
+      }
+      function closeSidebar(){
+        sidebar.classList.remove('open');
+        sidebar.setAttribute('aria-hidden','true');
+        openBtn.setAttribute('aria-expanded','false');
+        main.classList.remove('shifted');
+      }
+
+      openBtn.addEventListener('click',()=>{
+        sidebar.classList.contains('open')?closeSidebar():openSidebar();
+      });
+      closeBtn.addEventListener('click',closeSidebar);
+
+      navLinks.forEach(link=>{
+        link.addEventListener('click',()=>{
+          if(window.innerWidth<=720)closeSidebar();
+        });
+      });
+
+      document.addEventListener('click',ev=>{
+        const inside=sidebar.contains(ev.target)||openBtn.contains(ev.target);
+        if(!inside&&sidebar.classList.contains('open')&&window.innerWidth<=720){closeSidebar();}
+      });
+
+      document.addEventListener('keydown',ev=>{
+        if(ev.key==='Escape'&&sidebar.classList.contains('open')){closeSidebar();openBtn.focus();}
+      });
+
+      window.addEventListener('resize',()=>{
+        if(window.innerWidth<=720)main.classList.remove('shifted');
+      });
+    });
+  </script>
+</body>
+</html> 
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Us</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #70f3df;
+            color: #050f26;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .contact-container {
+            background: #F7F1C6;
+            padding: 30px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 0 25px rgba(81, 227, 217, 0.5);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 6px;
+            border: none;
+            font-size: 14px;
+        }
+
+        textarea {
+            resize: none;
+            height: 120px;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            background: #38bdf8;
+            color: #020617;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #0ea5e9;
+        }
+
+        .success {
+            text-align: center;
+            margin-top: 15px;
+            color: #22c55e;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="contact-container">
+    <h1>Contact Us</h1>
+
+    <form action="https://formspree.io/f/xqekvbvz" method="POST">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" required></textarea>
+
+        <!-- Optional: prevents spam -->
+        <input type="hidden" name="_captcha" value="false">
+
+        <button type="submit">Send Message</button>
+    </form>
+</div>
+
+</body>
+</html> 

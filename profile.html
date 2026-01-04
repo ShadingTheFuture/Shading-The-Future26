@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn - Education Hub</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #F7F1C6; /* orange background */
+            color: #8965C7; /* pink text for contrast */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .back-link {
+            align-self: flex-start;
+            margin-bottom: 40px;
+            text-decoration: none;
+            color: #FF66BE; /* Yellow link */
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: #69BAC9; /* Lighter yellow on hover */
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 2em;
+        }
+
+        p {
+            max-width: 600px;
+            text-align: center;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <!-- Back to Education Hub link -->
+    <a href="index.html" class="back-link">← Home Page</a>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pastel Profile App Pro</title>
+ 
+
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+
+<style>
+/* Pastel Theme */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin:0; padding:0;
+  background: linear-gradient(120deg, #FFC1CC, #A0E7E5, #B5EAD7, #FFDAC1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  width: 380px;
+  padding: 30px;
+  text-align: center;
+  margin: 10px;
+}
+
+input, textarea {
+  width: 90%;
+  padding: 10px;
+  margin: 8px auto;
+  display: block;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+textarea { resize: none; height: 60px; }
+
+button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+button:hover { opacity: 0.85; }
+
+#login-btn { background: #FFB7C5; color: white; }
+#signup-btn { background: #A0E7E5; color: white; }
+#logout-btn { background: #FFDAC1; color: white; }
+#reset-password-btn { background: #CBA3FF; color: white; }
+#update-profile-btn { background: #B5EAD7; color: white; }
+
+#message, #profile-message { margin-top: 15px; font-weight: bold; }
+#message.error, #profile-message.error { color: red; }
+#message.success, #profile-message.success { color: green; }
+
+.profile-pic {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border: 3px solid #FFB7C5;
+}
+
+a { color: #A0E7E5; cursor: pointer; text-decoration: underline; }
+#dark-mode-toggle { margin-top: 15px; cursor: pointer; }
+</style>
+</head>
+<body>
+
+<!-- Authentication Card -->
+<div class="card" id="auth-card">
+  <h2>Login</h2>
+  <input type="email" id="login-email" placeholder="Email">
+  <input type="password" id="login-password" placeholder="Password">
+  <button id="login-btn">Login</button>
+
+  <h2>Sign Up</h2>
+  <input type="text" id="signup-name" placeholder="Display Name">
+  <input type="email" id="signup-email" placeholder="Email">
+  <input type="password" id="signup-password" placeholder="Password">
+  <input type="text" id="signup-photo" placeholder="Profile Pic URL (optional)">
+  <label>
+    <input type="checkbox" id="subscribe-checkbox"> Subscribe to newsletter
+  </label>
+  <button id="signup-btn">Create Account</button>
+
+  <p><a id="forgot-password-link">Forgot Password?</a></p>
+
+  <div id="message"></div>
+</div>
+
+<!-- Profile Card -->
+<div class="card" id="profile-card" style="display:none;">
+  <img src="" id="profile-pic" class="profile-pic" alt="Profile Picture">
+  <input type="file" id="profile-pic-input" accept="image/*">
+  <input type="text" id="profile-name" placeholder="Display Name">
+  <textarea id="profile-bio" placeholder="Bio"></textarea>
+  <input type="text" id="profile-location" placeholder="Location">
+  <p id="profile-email"></p>
+  <p id="email-verified" style="color: #555; font-size: 0.9rem;"></p>
+
+  <button id="update-profile-btn">Update Profile</button>
+  <button id="reset-password-btn">Reset Password</button>
+  <button id="logout-btn">Logout</button>
+
+  <div id="profile-message"></div>
+  <p id="dark-mode-toggle">Toggle Dark Mode</p>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyCPMqGe75M-JQYWEB09MY0Ws4EwXysLiX0",
+  authDomain: "shading-the-future.firebaseapp.com",
+  projectId: "shading-the-future",
+  storageBucket: "shading-the-future.firebasestorage.app",
+  messagingSenderId: "290044855536",
+  appId: "1:290044855536:web:a1ed4eea2b7e42136a2e35",
+  measurementId: "G-ZEFMRBZ7R3"
+};
+
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const storage = firebase.storage();
+  const db = firebase.firestore();
+
+  // DOM elements
+  const loginEmail = document.getElementById('login-email');
+  const loginPassword = document.getElementById('login-password');
+  const loginBtn = document.getElementById('login-btn');
+  const signupName = document.getElementById('signup-name');
+  const signupEmail = document.getElementById('signup-email');
+  const signupPassword = document.getElementById('signup-password');
+  const signupPhoto = document.getElementById('signup-photo');
+  const signupBtn = document.getElementById('signup-btn');
+  const subscribeCheckbox = document.getElementById('subscribe-checkbox');
+  const forgotPasswordLink = document.getElementById('forgot-password-link');
+
+  const authCard = document.getElementById('auth-card');
+  const profileCard = document.getElementById('profile-card');
+  const profilePic = document.getElementById('profile-pic');
+  const profilePicInput = document.getElementById('profile-pic-input');
+  const profileName = document.getElementById('profile-name');
+  const profileBio = document.getElementById('profile-bio');
+  const profileLocation = document.getElementById('profile-location');
+  const profileEmail = document.getElementById('profile-email');
+  const emailVerified = document.getElementById('email-verified');
+
+  const updateProfileBtn = document.getElementById('update-profile-btn');
+  const resetPasswordBtn = document.getElementById('reset-password-btn');
+  const logoutBtn = document.getElementById('logout-btn');
+  const darkModeToggle = document.getElementById('dark-mode-toggle');
+
+  const messageDiv = document.getElementById('message');
+  const profileMessage = document.getElementById('profile-message');
+
+  function showMessage(text, type='error'){ if(messageDiv){ messageDiv.textContent=text; messageDiv.className=type==='error'?'error':'success'; }}
+  function showProfileMessage(text,type='error'){ if(profileMessage){ profileMessage.textContent=text; profileMessage.className=type==='error'?'error':'success'; }}
+
+  // Login
+  loginBtn.addEventListener('click', () => {
+    if(!loginEmail.value || !loginPassword.value) return showMessage("Enter email and password");
+    auth.signInWithEmailAndPassword(loginEmail.value, loginPassword.value)
+      .then(() => showMessage("Logged in successfully!", "success"))
+      .catch(e=>showMessage(e.message,"error"));
+  });
+
+  // Signup with email verification + subscription
+  signupBtn.addEventListener('click',()=>{
+    const email=signupEmail.value, password=signupPassword.value;
+    const name=signupName.value||"Anonymous";
+    const photo=signupPhoto.value||"https://i.pravatar.cc/150";
+    if(!email||!password) return showMessage("Enter email and password");
+    auth.createUserWithEmailAndPassword(email,password)
+      .then(userCred=>{
+        const user=userCred.user;
+        // Set displayName and photo
+        return user.updateProfile({displayName:name, photoURL:photo}).then(()=>user);
+      })
+      .then(user=>{
+        // Send email verification
+        user.sendEmailVerification();
+        showMessage("Account created! Verification email sent.", "success");
+        // Subscribe if checkbox checked
+        if(subscribeCheckbox.checked){
+          db.collection('subscriptions').doc(email).set({ email: email, date: new Date() });
+        }
+      })
+      .catch(e=>showMessage(e.message,"error"));
+  });
+
+  // Forgot password
+  forgotPasswordLink.addEventListener('click',()=>{
+    const email=loginEmail.value||signupEmail.value;
+    if(!email)return showMessage("Enter your email to reset password");
+    auth.sendPasswordResetEmail(email)
+      .then(()=>showMessage("Password reset email sent!","success"))
+      .catch(e=>showMessage(e.message,"error"));
+  });
+
+  // Logout
+  logoutBtn.addEventListener('click',()=>auth.signOut());
+
+  // Reset password
+  resetPasswordBtn.addEventListener('click',()=>{
+    const user=auth.currentUser;
+    if(!user||!user.email)return showProfileMessage("No email found","error");
+    auth.sendPasswordResetEmail(user.email)
+      .then(()=>showProfileMessage("Password reset email sent!","success"))
+      .catch(e=>showProfileMessage(e.message,"error"));
+  });
+
+  // Update profile
+  updateProfileBtn.addEventListener('click', async ()=>{
+    const user = auth.currentUser;
+    if(!user) return showProfileMessage("No user logged in","error");
+
+    let photoURL = user.photoURL;
+    if(profilePicInput.files[0]){
+      const file=profilePicInput.files[0];
+      const storageRef = storage.ref().child('profile_pics/'+user.uid);
+      await storageRef.put(file);
+      photoURL = await storageRef.getDownloadURL();
+    }
+
+    await user.updateProfile({displayName:profileName.value||"Anonymous",photoURL:photoURL});
+    await db.collection('users').doc(user.uid).set({
+      bio: profileBio.value,
+      location: profileLocation.value
+    }, {merge:true});
+
+    profilePic.src = photoURL;
+    showProfileMessage("Profile updated!","success");
+  });
+
+  // Dark mode toggle
+  darkModeToggle.addEventListener('click',()=>{
+    document.body.classList.toggle('dark-mode');
+    if(document.body.classList.contains('dark-mode')){
+      document.body.style.background="linear-gradient(120deg,#2d2d2d,#4d4d4d)";
+    }else{
+      document.body.style.background="linear-gradient(120deg, #FFC1CC, #A0E7E5, #B5EAD7, #FFDAC1)";
+    }
+  });
+
+  // Load profile
+  auth.onAuthStateChanged(async user=>{
+    if(user){
+      authCard.style.display='none';
+      profileCard.style.display='block';
+      profilePic.src = user.photoURL || "https://i.pravatar.cc/150";
+      profileName.value = user.displayName||"";
+      profileEmail.textContent = user.email;
+      emailVerified.textContent = user.emailVerified?"Email verified":"Please verify your email";
+
+      const doc = await db.collection('users').doc(user.uid).get();
+      if(doc.exists){
+        profileBio.value = doc.data().bio||"";
+        profileLocation.value = doc.data().location||"";
+      }else{
+        profileBio.value="";
+        profileLocation.value="";
+      }
+      showMessage(""); showProfileMessage("");
+    }else{
+      authCard.style.display='block';
+      profileCard.style.display='none';
+      showMessage(""); showProfileMessage("");
+    }
+  });
+
+});
+</script>
+</body>
+</html> 

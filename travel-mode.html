@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home | Shading The Future</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Script -->
+  <!-- If your JS is inside /css/, change src to "css/script.js" -->
+  <script src="script.js" defer></script>
+
+  <style>
+    :root{
+      --navy: #7da3d6;
+      --aqua: #92f2d7;
+      --aqua-hover: #E1BDF5;
+      --pastel: #EBDC76;
+      --white: #FFEBAF;
+    }
+    *{box-sizing:border-box}
+    body,html{margin:0;height:100%;font-family:'Poppins',sans-serif;background:var(--pastel);}
+    .sidebar{
+      position:fixed;top:0;left:-260px;width:260px;height:100%;
+      background:var(--navy);padding:18px 16px;transition:left .28s ease;
+      z-index:1000;border-top-right-radius:20px;border-bottom-right-radius:20px;
+    }
+    .sidebar.open{left:0;}
+    .logo{text-align:center;margin-bottom:20px;}
+    .logo img{width:72px;height:72px;border-radius:50%;display:block;margin:0 auto;}
+    .logo h2{color:var(--white);font-size:20px;margin:10px 0 0;}
+    .nav-list{list-style:none;padding:0;margin:0;}
+    .nav-list li{margin:10px 0;}
+    .nav-list a{
+      display:block;text-decoration:none;padding:10px 14px;border-radius:8px;
+      background:var(--aqua);color:var(--navy);font-weight:700;
+    }
+    .nav-list a:hover{background:var(--aqua-hover);}
+    .close-btn{
+      position:absolute;top:8px;right:10px;background:none;border:none;
+      font-size:26px;color:var(--white);cursor:pointer;
+    }
+    .open-btn{
+      position:fixed;top:16px;left:16px;z-index:1100;background:none;
+      border:none;font-size:28px;cursor:pointer;color:var(--navy);
+    }
+    .main{
+      padding:36px;transition:margin-left .28s ease;min-height:100vh;
+    }
+    .main.shifted{margin-left:260px;}
+    h1{color:#ff91c8;font-size:48px;margin:10px 0 16px;}
+    p{font-size:18px;color:#0f2240;}
+    @media(max-width:720px){
+      .main.shifted{margin-left:0;}
+      .sidebar{width:82%;left:-82%;}
+      .sidebar.open{left:0;}
+    }
+  </style>
+</head>
+
+<body>
+  <!-- open button -->
+  <button id="openBtn" class="open-btn" aria-label="Open sidebar" aria-expanded="false" aria-controls="sidebar">☰</button>
+
+  <!-- sidebar -->
+  <aside id="sidebar" class="sidebar" aria-hidden="true">
+    <button id="closeBtn" class="close-btn" aria-label="Close sidebar">×</button>
+
+    <div class="logo">
+      <img src="images/IMG_20250716_220954_451 (1).webp" alt="Logo" onerror="this.style.display='none'">
+      <h2>Shading The Future</h2>
+    </div>
+
+    <ul class="nav-list">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="education-hub.html">Education Hub</a></li>
+      <li><a href="skin-analysis.html">Skin Analysis</a></li>
+      <li><a href="carbon-footprint.html">Carbon Footprint Tracker</a></li>
+      <li><a href="uv-weather.html">UV & Weather Monitor</a></li>
+      <li><a href="travel-mode.html">Travel Mode</a></li>
+      <li><a href="product-info.html">Product Information</a></li>
+      <li><a href="profile.html">Profile</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+  </aside>
+  <style>
+    .sidebar {
+      height: 100vh;
+      overflow-y: auto;
+    }
+  </style>
+<script>
+    document.addEventListener('DOMContentLoaded',()=>{
+      const sidebar=document.getElementById('sidebar');
+      const openBtn=document.getElementById('openBtn');
+      const closeBtn=document.getElementById('closeBtn');
+      const main=document.getElementById('main');
+      const navLinks=sidebar.querySelectorAll('.nav-list a');
+
+      function openSidebar(){
+        sidebar.classList.add('open');
+        sidebar.setAttribute('aria-hidden','false');
+        openBtn.setAttribute('aria-expanded','true');
+        if(window.innerWidth>720)main.classList.add('shifted');
+      }
+      function closeSidebar(){
+        sidebar.classList.remove('open');
+        sidebar.setAttribute('aria-hidden','true');
+        openBtn.setAttribute('aria-expanded','false');
+        main.classList.remove('shifted');
+      }
+
+      openBtn.addEventListener('click',()=>{
+        sidebar.classList.contains('open')?closeSidebar():openSidebar();
+      });
+      closeBtn.addEventListener('click',closeSidebar);
+
+      navLinks.forEach(link=>{
+        link.addEventListener('click',()=>{
+          if(window.innerWidth<=720)closeSidebar();
+        });
+      });
+
+      document.addEventListener('click',ev=>{
+        const inside=sidebar.contains(ev.target)||openBtn.contains(ev.target);
+        if(!inside&&sidebar.classList.contains('open')&&window.innerWidth<=720){closeSidebar();}
+      });
+
+      document.addEventListener('keydown',ev=>{
+        if(ev.key==='Escape'&&sidebar.classList.contains('open')){closeSidebar();openBtn.focus();}
+      });
+
+      window.addEventListener('resize',()=>{
+        if(window.innerWidth<=720)main.classList.remove('shifted');
+      });
+    });
+  </script>
+</body>
+</html> 
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Travel Mode - Scrapbook Edition</title>
+<style>
+body {
+  margin:0;
+  font-family:"Segoe UI", sans-serif;
+  transition: background 0.5s;
+  background: #ffe4f0;
+}
+.navbar {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  padding:12px 0;
+  gap:8px;
+  background: #cdeaff;
+}
+.navbar button {
+  padding:10px 18px;
+  border:none;
+  border-radius:20px;
+  background:#fff;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.2s;
+}
+.navbar button:hover { background:#ffdeeb; }
+.main {
+  max-width:1000px;
+  margin:20px auto;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  padding:0 10px;
+}
+.card {
+  width:100%;
+  border-radius:25px;
+  padding:25px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+  transition:transform 0.2s, background 0.5s;
+}
+.card:hover{transform:translateY(-5px);}
+.card h2{margin-top:0;color:#7f5af0;font-size:1.5rem;}
+.progress-container{background:#eee;border-radius:20px;overflow:hidden;height:18px;margin-bottom:12px;}
+.progress-bar{height:100%;width:0%;transition: width 0.3s;background:#5eead4;border-radius:20px;}
+input,textarea,select{width:100%;padding:10px;margin-bottom:12px;border-radius:12px;border:1px solid #ccc;}
+ul{padding:0;}
+li{list-style:none;margin-bottom:10px;}
+input[type="checkbox"]{margin-right:8px;}
+.done{ text-decoration:line-through;color:#999;}
+button.action{background:#ffb6c1;color:white;border:none;padding:12px;border-radius:20px;cursor:pointer;font-weight:bold;}
+button.small{padding:6px 10px;margin-left:6px;background:#c5f7ff;border:none;border-radius:14px;cursor:pointer;}
+#suitcase{
+  width:100%;
+  min-height:120px;
+  border:3px dashed #a0c4ff;
+  border-radius:20px;
+  display:flex;align-items:center;justify-content:center;
+  margin:10px 0;
+  font-weight:bold;color:#555;
+  background:#f0faff;
+}
+.draggable-item{
+  width:50px;height:50px;
+  border-radius:12px;margin:5px;display:inline-flex;
+  align-items:center;justify-content:center;
+  cursor:grab;font-size:1.5rem;transition: transform 0.2s;
+}
+.draggable-item:active{transform:scale(1.2);}
+.timeline-card{
+  background:#fff0f5;
+  padding:12px;margin-bottom:10px;border-radius:15px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.08);
+}
+#confettiCanvas{
+  position:fixed;pointer-events:none;top:0;left:0;width:100%;height:100%;z-index:9999;
+}
+.memory-photo{max-width:100%;border-radius:15px;margin-bottom:10px;}
+@media(max-width:768px){
+  .main{padding:0 15px;}
+  .navbar{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+
+<canvas id="confettiCanvas"></canvas>
+
+<div class="navbar">
+  <button onclick="setVibe('beach')">Beach</button>
+  <button onclick="setVibe('city')">City</button>
+  <button onclick="setVibe('mountain')">Mountains</button>
+  <button onclick="setVibe('jungle')">Jungle</button>
+</div>
+
+<div class="main">
+
+<div class="card" id="plan">
+<h2>Trip Planner</h2>
+<input id="destination" placeholder="Destination">
+<input type="date" id="startDate">
+<input type="date" id="endDate">
+<textarea id="notes" placeholder="Trip notes"></textarea>
+<button class="action" onclick="saveTrip()">Save Trip</button>
+<button class="action" style="background:#fca3cc;" onclick="deleteTrip()">Delete Trip</button>
+<button class="action" style="background:#ffe066;color:#333;" onclick="resetFeatures()">Reset Features</button>
+</div>
+
+<div class="card" id="daily">
+<h2>Daily Adventures</h2>
+<input id="missionInput" placeholder="Add a new mission">
+<button class="action" onclick="addMission()">Add Mission</button>
+<div class="progress-container"><div class="progress-bar" id="missionProgress"></div></div>
+<ul id="missionList"></ul>
+</div>
+
+<div class="card" id="pack">
+<h2>Packing Game</h2>
+<div id="suitcase">🧳 Suitcase</div>
+<div id="itemsContainer"></div>
+<div class="progress-container"><div class="progress-bar" id="packProgress"></div></div>
+</div>
+
+<div class="card" id="skin">
+<h2>Skin & Wellness Tips</h2>
+<select id="skinType" onchange="saveSkin()">
+<option value="">Select skin type</option>
+<option>Fair / burns easily</option>
+<option>Medium</option>
+<option>Dark</option>
+<option>Sensitive</option>
+</select>
+<ul>
+<li><input type="checkbox" data-key="skin1" onchange="updateProgress('skin')"> Apply sunscreen before going out</li>
+<li><input type="checkbox" data-key="skin2" onchange="updateProgress('skin')"> Reapply after swimming</li>
+<li><input type="checkbox" data-key="skin3" onchange="updateProgress('skin')"> Take shade breaks</li>
+</ul>
+<div class="progress-container"><div class="progress-bar" id="skinProgress"></div></div>
+</div>
+
+<div class="card" id="eco">
+<h2>Sustainability Score</h2>
+<ul>
+<li><input type="checkbox" data-key="eco1" onchange="updateProgress('eco')"> Walk or cycle locally</li>
+<li><input type="checkbox" data-key="eco2" onchange="updateProgress('eco')"> Avoid single-use plastics</li>
+<li><input type="checkbox" data-key="eco3" onchange="updateProgress('eco')"> Support local businesses</li>
+</ul>
+<div class="progress-container"><div class="progress-bar" id="ecoProgress"></div></div>
+</div>
+
+<div class="card" id="journal">
+<h2>Trip Journal & Memories</h2>
+<input id="journalInput" placeholder="Write a memory">
+<button class="action" onclick="addJournal()">Add Memory</button>
+<input type="file" id="photoInput" accept="image/*" onchange="addPhoto(event)">
+<div id="journalList"></div>
+</div>
+
+<div class="card" id="summary">
+<h2>Rewards & Scrapbook</h2>
+<button class="action" onclick="downloadScrapbook()">Download Scrapbook</button>
+<div id="summaryText"></div>
+</div>
+
+</div>
+
+<script>
+/* Moodboard */
+function setVibe(vibe){
+  const body=document.body;
+  if(vibe==='beach') body.style.background='linear-gradient(to bottom,#a0e9fd,#ffe5b4)';
+  if(vibe==='city') body.style.background='linear-gradient(to bottom,#c3cfe2,#f0cfff)';
+  if(vibe==='mountain') body.style.background='linear-gradient(to bottom,#c3f0c3,#fce2f3)';
+  if(vibe==='jungle') body.style.background='linear-gradient(to bottom,#a8e6cf,#dcedc1)';
+  localStorage.setItem('vibe',vibe);
+}
+
+/* Trip Planner */
+function saveTrip(){
+  localStorage.setItem('trip',JSON.stringify({
+    destination:destination.value,
+    start:startDate.value,
+    end:endDate.value,
+    notes:notes.value
+  }));
+  alert("Trip saved!");
+}
+function deleteTrip(){if(confirm("Delete all trip data?")){localStorage.clear();location.reload();}}
+function resetFeatures(){if(confirm("Reset all features?")){localStorage.removeItem('missions');localStorage.removeItem('packedItems');localStorage.removeItem('journal');location.reload();}}
+
+/* Skin & Checklists */
+function saveSkin(){localStorage.setItem('skinType',skinType.value);}
+document.querySelectorAll("input[type='checkbox']").forEach(box=>{
+  const key=box.dataset.key;
+  if(!key) return;
+  box.checked=localStorage.getItem(key)==='true';
+  if(box.checked) box.parentElement.classList.add("done");
+  box.addEventListener("change",()=>{
+    localStorage.setItem(key,box.checked);
+    box.parentElement.classList.toggle("done");
+    updateProgress(getSection(box));
+  });
+});
+function getSection(box){return box.closest('.card').id;}
+function updateProgress(section){
+  let checkboxes=document.querySelectorAll(`#${section} input[type='checkbox']`);
+  let total=checkboxes.length;
+  let checked=Array.from(checkboxes).filter(cb=>cb.checked).length;
+  let percent=total?Math.round((checked/total)*100):0;
+  let bar=document.getElementById(section+'Progress');
+  if(bar) bar.style.width=percent+'%';
+}
+
+/* Daily Missions */
+let missions=JSON.parse(localStorage.getItem('missions'))||[];
+function renderMissions(){
+  missionList.innerHTML='';
+  missions.forEach((m,i)=>{
+    const li=document.createElement('li');
+    li.innerHTML=`${m} <button class="small" onclick="editMission(${i})">Edit</button> <button class="small" onclick="deleteMission(${i})">Delete</button>`;
+    missionList.appendChild(li);
+  });
+  updateMissionProgress();
+}
+function addMission(){if(!missionInput.value) return;missions.push(missionInput.value);localStorage.setItem('missions',JSON.stringify(missions));missionInput.value='';renderMissions();}
+function editMission(i){const updated=prompt("Edit mission:",missions[i]);if(updated){missions[i]=updated;localStorage.setItem('missions',JSON.stringify(missions));renderMissions();}}
+function deleteMission(i){missions.splice(i,1);localStorage.setItem('missions',JSON.stringify(missions));renderMissions();}
+function updateMissionProgress(){let checked=missions.length?missions.length:0;document.getElementById('missionProgress').style.width=((checked/missions.length)*100||0)+'%';}
+
+/* Packing Game w/ Emoji & Confetti */
+const items=['🧴','🧢','🕶️','💧','👕'];
+const itemsContainer=document.getElementById('itemsContainer');
+const suitcase=document.getElementById('suitcase');
+let packedItems=JSON.parse(localStorage.getItem('packedItems'))||[];
+function renderItems(){itemsContainer.innerHTML='';items.forEach(it=>{const div=document.createElement('div');div.className='draggable-item';div.draggable=true;div.innerText=it;div.addEventListener('dragstart',dragStart);itemsContainer.appendChild(div);});}
+function dragStart(e){e.dataTransfer.setData('text',e.target.innerText);}
+suitcase.addEventListener('dragover',e=>e.preventDefault());
+suitcase.addEventListener('drop',e=>{e.preventDefault();const item=e.dataTransfer.getData('text');if(!packedItems.includes(item)) packedItems.push(item);localStorage.setItem('packedItems',JSON.stringify(packedItems));updatePackProgress();});
+function updatePackProgress(){
+  const percent=Math.round((packedItems.length/items.length)*100);
+  document.getElementById('packProgress').style.width=percent+'%';
+  if(percent===100) launchConfetti();
+}
+
+/* Confetti */
+function launchConfetti(){
+  const canvas=document.getElementById('confettiCanvas');
+  const ctx=canvas.getContext('2d');
+  canvas.width=window.innerWidth;
+  canvas.height=window.innerHeight;
+  let confetti=[];
+  for(let i=0;i<150;i++){confetti.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height-50,r:Math.random()*6+2,d:Math.random()*150+50,color:`hsl(${Math.random()*360},80%,70%)`,tilt:Math.random()*10-10,tiltAngleIncremental:Math.random()*0.07+0.05,tiltAngle:0});}
+  let animation;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    confetti.forEach(f=>{ctx.beginPath();ctx.lineWidth=f.r/2;ctx.strokeStyle=f.color;ctx.moveTo(f.x+f.tilt+f.r/4,f.y);ctx.lineTo(f.x+f.tilt,f.y+f.tilt+f.r/4);ctx.stroke();f.tiltAngle+=f.tiltAngleIncremental;f.y+=Math.cos(f.d)*1+1;f.tilt=Math.sin(f.tiltAngle)*15;if(f.y>canvas.height){f.y=-10;f.x=Math.random()*canvas.width;}});animation=requestAnimationFrame(draw);}
+  draw();
+  setTimeout(()=>{cancelAnimationFrame(animation);ctx.clearRect(0,0,canvas.width,canvas.height);},5000);
+}
+
+/* Journal & Memories */
+let journalEntries=JSON.parse(localStorage.getItem('journal'))||[];
+let photos=JSON.parse(localStorage.getItem('photos'))||[];
+function renderJournal(){
+  journalList.innerHTML='';
+  journalEntries.forEach(j=>{const div=document.createElement('div');div.className='timeline-card';div.innerText=j;journalList.appendChild(div);});
+  photos.forEach(p=>{const img=document.createElement('img');img.src=p;img.className='memory-photo';journalList.appendChild(img);});
+}
+function addJournal(){if(!journalInput.value) return;journalEntries.push(journalInput.value);localStorage.setItem('journal',JSON.stringify(journalEntries));journalInput.value='';renderJournal();}
+function addPhoto(event){const reader=new FileReader();reader.onload=function(){photos.push(reader.result);localStorage.setItem('photos',JSON.stringify(photos));renderJournal();};reader.readAsDataURL(event.target.files[0]);}
+
+/* Download scrapbook */
+function downloadScrapbook(){
+  html2canvas(document.getElementById('journal')).then(canvas=>{
+    const link=document.createElement('a');
+    link.download='scrapbook.png';
+    link.href=canvas.toDataURL();
+    link.click();
+  });
+}
+
+/* Load saved data */
+function loadSaved(){
+  const vibe=localStorage.getItem('vibe'); if(vibe) setVibe(vibe);
+  const trip=JSON.parse(localStorage.getItem('trip')); if(trip){destination.value=trip.destination;startDate.value=trip.start;endDate.value=trip.end;notes.value=trip.notes;}
+  const skin=localStorage.getItem('skinType'); if(skin) skinType.value=skin;
+  missions=JSON.parse(localStorage.getItem('missions'))||[]; renderMissions();
+  packedItems=JSON.parse(localStorage.getItem('packedItems'))||[]; renderItems(); updatePackProgress();
+  journalEntries=JSON.parse(localStorage.getItem('journal'))||[];
+  photos=JSON.parse(localStorage.getItem('photos'))||[];
+  renderJournal();
+  updateProgress('skin'); updateProgress('eco');
+}
+loadSaved();
+</script>
+
+<!-- Include html2canvas for scrapbook download -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</body>
+</html> 
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Travel Scrapbook</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+body {margin:0; font-family:"Segoe UI", sans-serif; background:#ffe4f0;}
+.header {text-align:center; padding:10px; background:#cdeaff;}
+.toolbar {display:flex; flex-wrap:wrap; justify-content:center; gap:10px; padding:10px; background:#f5f5f5;}
+button, input[type="color"] {padding:8px 14px; border:none; border-radius:12px; cursor:pointer; font-weight:bold;}
+#scrapbookContainer {position:relative; width:90%; max-width:1000px; height:650px; margin:20px auto; border:2px dashed #a0c4ff; background:#fff0f5; overflow:hidden;}
+.element {position:absolute; cursor:move; user-select:none; touch-action:none;}
+.textbox {padding:5px; min-width:50px; min-height:20px; background:rgba(255,255,255,0.7); font-size:16px; color:#333; border:1px dashed #ccc;}
+.memory-photo {border-radius:10px; max-width:200px; max-height:200px;}
+.sticker {font-size:40px; cursor:pointer;}
+</style>
+</head>
+<body>
+
+<div class="header"><h1>Travel Scrapbook Editor</h1></div>
+
+<div class="toolbar">
+  <input type="file" id="photoInput" accept="image/*">
+  <button id="addTextBtn">Add Text</button>
+  Background: <input type="color" id="bgColor">
+  Stickers:
+  <button class="stickerBtn">🌴</button>
+  <button class="stickerBtn">🏖️</button>
+  <button class="stickerBtn">🧳</button>
+  <button class="stickerBtn">☀️</button>
+  <button class="stickerBtn">🌸</button>
+  <button id="downloadBtn">Download Scrapbook</button>
+</div>
+
+<div id="scrapbookContainer"></div>
+
+<script>
+// Make element draggable
+function makeDraggable(el){
+  let offsetX, offsetY;
+  el.addEventListener('mousedown', e=>{
+    offsetX = e.offsetX; offsetY = e.offsetY;
+    function mouseMoveHandler(ev){
+      el.style.left = (ev.clientX - offsetX - scrapbookContainer.getBoundingClientRect().left) + 'px';
+      el.style.top = (ev.clientY - offsetY - scrapbookContainer.getBoundingClientRect().top) + 'px';
+    }
+    function mouseUpHandler(){ document.removeEventListener('mousemove', mouseMoveHandler); document.removeEventListener('mouseup', mouseUpHandler); }
+    document.addEventListener('mousemove', mouseMoveHandler);
+    document.addEventListener('mouseup', mouseUpHandler);
+  });
+}
+
+const scrapbookContainer = document.getElementById('scrapbookContainer');
+
+// Upload photo
+document.getElementById('photoInput').addEventListener('change', function(e){
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(){
+    const img = document.createElement('img');
+    img.src = reader.result;
+    img.className = 'element memory-photo';
+    img.style.left='50px'; img.style.top='50px';
+    scrapbookContainer.appendChild(img);
+    makeDraggable(img);
+  }
+  reader.readAsDataURL(file);
+});
+
+// Add text
+document.getElementById('addTextBtn').addEventListener('click', ()=>{
+  const div = document.createElement('div');
+  div.className = 'element textbox';
+  div.contentEditable = true;
+  div.innerText = 'New text';
+  div.style.left='50px'; div.style.top='50px';
+  scrapbookContainer.appendChild(div);
+  makeDraggable(div);
+});
+
+// Stickers
+document.querySelectorAll('.stickerBtn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const span = document.createElement('div');
+    span.className='element sticker';
+    span.innerText = btn.innerText;
+    span.style.left='50px'; span.style.top='50px';
+    scrapbookContainer.appendChild(span);
+    makeDraggable(span);
+  });
+});
+
+// Background color
+document.getElementById('bgColor').addEventListener('input', function(){
+  scrapbookContainer.style.background = this.value;
+});
+
+// Download scrapbook
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  html2canvas(scrapbookContainer).then(canvas=>{
+    const a = document.createElement('a');
+    a.href = canvas.toDataURL();
+    a.download = 'scrapbook.png';
+    a.click();
+  });
+});
+</script>
+
+</body>
+</html> 
